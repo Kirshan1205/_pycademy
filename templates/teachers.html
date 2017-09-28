@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+    {% block mainContent %}
+    <!--  ===================== Header Area End ===================== -->
+
+    <!-- Breadcumb area start -->
+    <section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcumb_section">
+                        <!-- Breadcumb page title start -->
+                        <div class="page_title">
+                            <h3>Teacher</h3>
+                        </div>
+                        <!-- Breadcumb page pagination start -->
+                        <div class="page_pagination">
+                            <ul>
+                                <li><a href="index">Home</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                <li>Teacher</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcumb area end -->
+
+    <!-- ===================== Our Teacher Area Start ===================== -->
+    <section class="our_teachers_area our_teacher section_padding_100_70">
+        <div class="container">
+            <div class="row">
+    <!-------- teacher data starts ---------->
+    {% for teacher in teachers: %}
+                <!-- Single Teacher Area Start -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single_teacher_profile item">
+                        <!-- Single Teacher Thumb -->
+                        <div class="teacher_thumb">
+                            <img src="static/img/teacher-img/{{teacher['image']}}.jpg" alt="">
+                        </div>
+                        <!-- Single Teacher Details Info -->
+                        <div class="single_teacher_details_info">
+                            <h5>{{teacher['name'].title()}}</h5>
+                            <p>{{teacher['position'].title()}}</p>
+                            <!-- Single Teacher Socila Links -->
+                            <div class="teacher_social_info">
+                                <div class="social_icon">
+                                    {% if teacher['fb']: %} <a href="{{teacher['fb']}}"><i class="fa fa-facebook"></i></a>   {% endif %}
+                                    {% if teacher['twitter']: %} <a href="{{teacher['twitter']}}"><i class="fa fa-twitter"></i></a>  {% endif %}
+                                    {% if teacher['skype']: %} <a href="{{teacher['skype']}}#"><i class="fa fa-skype"></i></a> {% endif %}
+                                    {% if teacher['dribbble']: %} <a href="{{teacher['dribbble']}}"><i class="fa fa-dribbble"></i></a> {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{% endfor %}
+    <!----------- teachers data end ----------->
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Pagination Area Start -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li><a href="#" aria-label="Previous">Prev</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#" aria-label="Next">Next</a></li>
+                        </ul>
+                    </nav>
+                    <!-- Pagination Area End -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===================== Our Teacher Area End ===================== -->
+
+{% endblock %}
