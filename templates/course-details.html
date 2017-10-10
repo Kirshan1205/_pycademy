@@ -29,6 +29,7 @@
     <!-- Breadcumb area end -->
 
     <!-- ============================== Courses Details Area Start ============================== -->
+
     <section class="courses_details_area">
         <div class="container">
             <div class="row">
@@ -36,7 +37,7 @@
 
                     <!-- Courses Details Thumb Area Start -->
                     <div class="courses_details_thumb">
-                        <img src="static/img/course-img/softwareengineer-2.jpg" alt="">
+                        <img src="{{course.get('image','NaN')}}" alt="">
                         <!-- Courses Details Thumb Caption Area Start -->
                     </div>
                     <!-- Courses Details Thumb Area End -->
@@ -48,7 +49,7 @@
 
                     <!-- Courses Overview Content -->
                     <div class="couress_overview_content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sunt, reiciendis corrupti maiores voluptas dicta nesciunt sed accusamus aperiam inventore? Autem tempore ratione assumenda modi, fugiat at beatae nihil simili. Lorem ipsum dolor sit amet, consectetur adipisicing elit. In reprehenderit consectetur sed dolores voluptatem culpa necessitatibus debitis repudiandae, architecto sint eum fugiat corporis facilis totam accusantium est omnis rem ex!</p>
+                        <p>{{course.get('title','NaN')[0].title()}}</p>
                     </div>
 
                     <!-- Courses Description -->
@@ -58,10 +59,53 @@
 
                     <!-- Courses Description Content -->
                     <div class="courses_description_content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus similique ipsum quaerat tempore, eum, iusto cupiditate? Illum quis, maxime necessitatibus? Voluptatibus soluta maxime odio neque assumenda. Eaque dignissimos iste asperiores veritatis neque?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus similique ipsum quaerat tempore, eum, iusto cupiditate? Illum quis, maxime necessitatibus? Voluptatibus soluta maxime odio neque assumenda. Eaque dignissimos iste asperiores veritatis neque?</p>
+                        <p>{{course.get('description','NaN')[0].title()}}</p>
+                        
+                    </div>
+                    <!-- Courses Description -->
+                    <div class="courses_description">
+                        <h5>Prerequisite Courses</h5>
                     </div>
 
+                    <!-- Single Courses Area Start -->
+                    <div class="row">
+                        {% for prerequisiteCourse in course["prerequisite"] %}
+                        <!-- Single Courses Area Start -->
+                        <div class="col-12 col-lg-6">
+                            <div class="single_courses related">
+                                <div class="single_courses_thumb">
+                                    <img src="static/img/course-img/softwareengineer.jpg" alt="">
+                                    <div class="hover_overlay">
+                                        <div class="links">
+                                            <a class="magnific-popup" href="static/img/course-img/softwareengineer.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single Courses Image Area End -->
+                                <div class="single_courses_desc">
+                                    <!-- Single Courses Title Area End -->
+                                    <div class="title">
+                                        <a href="#"><h5>{{prerequisiteCourse["title"][0].title()}}</h5></a>
+                                        <p><i class="fa fa-user" aria-hidden="true"></i> {{prerequisiteCourse["teacherID"][0].title()}}</p>
+                                        <p>{{prerequisiteCourse["description"][0].title()}}</p>
+                                    </div>
+                                    <!-- Single Courses Blog Title Area End -->
+                                    <div class="price_rating_area">
+                                        <div class="price">
+                                            <span>{{prerequisiteCourse["price"][0].title()}}</span>
+                                        </div>
+                                        <div class="seat">
+                                            <i class="fa fa-users" aria-hidden="true"><span>{{prerequisiteCourse["seats"][0].title()}}</span></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Courses Area End -->
+                        {% endfor %}
+                    </div>
+                    <!-- Single Courses Area End -->
+                    
                     <!-- Courses Description -->
                     <div class="courses_description">
                         <h5>Related Courses</h5>
@@ -69,7 +113,7 @@
 
                     <!-- Single Courses Area Start -->
                     <div class="row">
-
+                        {% for relatedCourse in course["relateds"] %}
                         <!-- Single Courses Area Start -->
                         <div class="col-12 col-lg-6">
                             <div class="single_courses related">
@@ -85,60 +129,26 @@
                                 <div class="single_courses_desc">
                                     <!-- Single Courses Title Area End -->
                                     <div class="title">
-                                        <a href="#"><h5>Introduction to Family Engagement in Education</h5></a>
-                                        <p><i class="fa fa-user" aria-hidden="true"></i> Md Nazrul Islam</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt eveniet assumenda repudiandae.</p>
+                                        <a href="#"><h5>{{relatedCourse["title"][0].title()}}</h5></a>
+                                        <p><i class="fa fa-user" aria-hidden="true"></i> {{relatedCourse["teacherID"][0].title()}}</p>
+                                        <p>{{relatedCourse["description"][0].title()}}</p>
                                     </div>
                                     <!-- Single Courses Blog Title Area End -->
                                     <div class="price_rating_area">
                                         <div class="price">
-                                            <span>$199</span>
+                                            <span>{{relatedCourse["price"][0].title()}}</span>
                                         </div>
                                         <div class="seat">
-                                            <i class="fa fa-users" aria-hidden="true"><span>90</span></i>
+                                            <i class="fa fa-users" aria-hidden="true"><span>{{relatedCourse["seats"][0].title()}}</span></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Single Courses Area End -->
-
-                        <!-- Single Courses Area Start -->
-                        <div class="col-12 col-lg-6">
-                            <div class="single_courses related">
-                                <div class="single_courses_thumb">
-                                    <img src="static/img/course-img/softwareengineer.jpg" alt="">
-                                    <div class="hover_overlay">
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/course-img/softwareengineer.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Courses Image Area End -->
-                                <div class="single_courses_desc">
-                                    <!-- Single Courses Title Area End -->
-                                    <div class="title">
-                                        <a href="#"><h5>Introduction to Family Engagement in Education</h5></a>
-                                        <p><i class="fa fa-user" aria-hidden="true"></i> Md Nazrul Islam</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt eveniet assumenda repudiandae.</p>
-                                    </div>
-                                    <!-- Single Courses Blog Title Area End -->
-                                    <div class="price_rating_area">
-                                        <div class="price">
-                                            <span>$199</span>
-                                        </div>
-                                        <div class="seat">
-                                            <i class="fa fa-users" aria-hidden="true"><span>90</span></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Courses Area End -->
-                    </div>
-                    <!-- Single Courses Area End -->
+                        {% endfor %}
                 </div>
-
+                </div>
                 <!-- ==================== Sidebar Area Start ==================== -->
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="sidebar_area">
@@ -152,7 +162,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-usd" aria-hidden="true"></i>
                                         <p>Fee:</p>
-                                        <p>$315</p>
+                                        <p>{{course.get('price', 'NaN')[0].title()}}</p>
                                     </div>
                                 </div>
 
@@ -161,7 +171,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-users" aria-hidden="true"></i>
                                         <p>Total Seats:</p>
-                                        <p>1500 Seats</p>
+                                        <p>{{course.get('seats','NaN')[0].title()}}</p>
                                     </div>
                                 </div>
                                 <!-- Single Option -->
@@ -169,7 +179,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                         <p>Start:</p>
-                                        <p>09 Nov’16</p>
+                                        <p>{{course.get('start','NaN')[0].title()}}</p>
                                     </div>
                                 </div>
                                 <!-- Single Option -->
@@ -177,7 +187,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                                         <p>End:</p>
-                                        <p>28 Feb’17</p>
+                                        <p>{{course.get('end','NaN')[0].title()}}</p>
                                     </div>
                                 </div>
                                 <!-- Single Option -->
@@ -185,7 +195,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         <p>Location:</p>
-                                        <p>Campus</p>
+                                        <p>{{course.get('location','NaN')[0].title()}}</p>
                                     </div>
                                 </div>
                                 <!-- Single Option -->
@@ -193,7 +203,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                         <p>Duration :</p>
-                                        <p>3 month</p>
+                                        <p>{{course.get('duration','NaN')[0].title()}}</p>
                                     </div>
                                 </div>
 
@@ -201,7 +211,7 @@
                                 <div class="col-12 clearfix">
                                     <div class="single_option clearfix">
                                         <i class="fa fa-download" aria-hidden="true"></i>
-                                        <h5><a href="dummy-data/worksheet.pdf" download>Download Full Course Plan</a></h5>
+                                        <h5><a href="{{course.get('coursePlan','NaN')}}" download>Download Full Course Plan</a></h5>
                                     </div>
                                 </div>
 

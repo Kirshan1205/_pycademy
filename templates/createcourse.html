@@ -1,0 +1,193 @@
+{% extends "layout.html" %} {% block mainContent %}
+<!--  ===================== Header Area End ===================== -->
+
+
+<!-- Breadcumb area start -->
+<section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcumb_section">
+                    <!-- Breadcumb page title start -->
+                    <div class="page_title">
+                        <h3>Course Detail</h3>
+                    </div>
+                    <!-- Breadcumb page pagination start -->
+                    <div class="page_pagination">
+                        <ul>
+                            <li><a href="index">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li>Course Details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcumb area end -->
+
+<!-- ============================== Courses Details Area Start ============================== -->
+<form action="{{action}}" method="POST" enctype="multipart/form-data">
+    <section class="courses_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-7 col-lg-8">
+                    <div class="courses_overview">
+                        <h5>Courses Image</h5>
+                    </div>
+                    <div class="single_courses_thumb">
+                        <img src="{{course.get('image', '')}}" alt="">
+                        <div class="hover_overlay">
+                            <div class="links">
+                                <a class="magnific-popup" href="{{course.get('image', '')}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Courses Details Thumb Area Start -->
+                    <div class="courses_details_thumb">
+                        <div class="orange-border">
+                            <input type="file" name="image" placeholder="Add Image" />
+                        </div>
+                        <!-- Courses Details Thumb Caption Area Start -->
+                    </div>
+                    <!-- Courses Details Thumb Area End -->
+
+                    <!-- Courses Overview -->
+                    <div class="courses_overview">
+                        <h5>Courses Title</h5>
+                    </div>
+
+                    <!-- Courses Overview Content -->
+                    <div class="couress_overview_content">
+                        <input class="form-control" type="text" name="title" placeholder="Add Title" value='{{course.get("title","")[0]}}' />
+
+                        <!-- Course Teacher -->
+                        <div class="courses_overview">
+                            <h5>Courses Teacher</h5>
+                        </div>
+
+                        <!-- Course Teacher -->
+
+                    </div>
+                    <div class="couress_overview_content">
+                        <input class="form-control" type="text" name="teacherID" placeholder="Add Teacher" value='{{course.get("teacherID","")[0]}}' />
+
+
+                    </div>
+
+                    <!-- Courses Description -->
+                    <div class="courses_description">
+                        <h5>Course Description</h5>
+                    </div>
+
+                    <!-- Courses Description Content -->
+                    <div class="courses_description_content">
+                        <input class="form-control" type="text" name="description" placeholder="Add Description " value='{{course.get("description","")[0]}}' />
+
+
+                    </div>
+                    <!-- Courses Description -->
+                    <div class="courses_description">
+                        <h5>Prerequisite Courses</h5>
+                    </div>
+
+                    <!-- Single Courses Area Start -->
+                    <div class="row">
+                        <input style="margin-top:10px; margin-bottom:10px;" class="form-control" type="text" name="prerequisiteIDs" placeholder="Enter IDs'"value='{{course.get(prerequisiteIDs, "")}}' />
+                    </div>
+                    <!-- Single Courses Area End -->
+
+                    <!-- Courses Description -->
+                    <div style="margin-top:20px;" class="courses_description">
+                        <h5>Related Courses</h5>
+                    </div>
+
+                    <!-- Single Courses Area Start -->
+                    <div class="row">
+                        <input style="margin-top:10px; margin-bottom:10px;" class="form-control" type="text" name="relatedIDs" placeholder="Enter IDs'" value='{{course.get(relatedIDs, "")}}' /> 
+                        
+                    </div>
+                    <!-- Single Courses Area End -->
+                </div>
+
+                <!-- ==================== Sidebar Area Start ==================== -->
+                <div class="col-12 col-md-5 col-lg-4">
+                    <div class="sidebar_area">
+
+                        <!-- Single Sidebar Content Start -->
+                        <div class="single_sidebar_content">
+                            <div class="row">
+
+                                <!-- Single Option -->
+                                <div class="col-6 clearfix">
+                                    <div class="single_option clearfix">
+                                        <i class="fa fa-usd" aria-hidden="true"></i>
+                                        <p>Fee:</p>
+                                        <input class="form-control" type="text" name="price" placeholder="Add Price" value='{{course.get("price","")[0]}}' />
+                                    </div>
+                                </div>
+                                <!-- Single Option -->
+                                <div class="col-6 clearfix">
+                                    <div class="single_option clearfix">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <p>Total Seats:</p>
+                                        <input class="form-control" type="text" name="seats" placeholder="Add Seat Amounts" value='{{course.get("seats","")[0]}}' />
+                                    </div>
+                                </div>
+                                <!-- Single Option -->
+                                <div class="col-6 clearfix">
+                                    <div class="single_option clearfix">
+                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <p>Start:</p>
+                                        <input class="form-control" type="date" name="start" placeholder="Add Beginning" value='{{course.get("start","")[0]}}' />
+                                    </div>
+                                </div>
+                                <!-- Single Option -->
+                                <div class="col-6 clearfix">
+                                    <div class="single_option clearfix">
+                                        <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                                        <p>End:</p>
+                                        <input class="form-control" type="date" name="end" placeholder="Add End" value='{{course.get("end","")[0]}}' />
+                                    </div>
+                                </div>
+                                <!-- Single Option -->
+                                <div class="col-6 clearfix">
+                                    <div class="single_option clearfix">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <p>Location:</p>
+                                        <input class="form-control" type="text" name="location" placeholder="Add Location" value='{{course.get("location","")[0]}}' />
+                                    </div>
+                                </div>
+                                <!-- Single Option -->
+                                <div class="col-6 clearfix">
+                                    <div class="single_option clearfix">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <p>Duration :</p>
+                                        <input class="form-control" type="text" name="duration" placeholder="Add Duration" value='{{course.get("duration","")[0]}}' />
+                                    </div>
+                                </div>
+
+                                <!-- Single Option -->
+                                <div class="col-12 clearfix">
+                                    <div class="single_option clearfix">
+
+                                        <i class="glyphicon glyphicon-save-file" aria-hidden="true"></i>
+                                        <input class="form" type="file" name="course_plan" placeholder="Add Course Plan" value='{{course.get("coursePlan","")[0]}}' />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input class="button button2" type="submit" value="Submit" role="button" />
+                <!-- Sidebar Area End -->
+            </div>
+        </div>
+    </section>
+
+</form>
+<!-- =============== Courses Details Area End =============== -->
+
+{% endblock %}

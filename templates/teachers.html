@@ -33,25 +33,27 @@
         <div class="container">
             <div class="row">
     <!-------- teacher data starts ---------->
-    {% for teacher in teachers: %}
+        {% for teacher in teachers %}
                 <!-- Single Teacher Area Start -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single_teacher_profile item">
                         <!-- Single Teacher Thumb -->
-                        <div class="teacher_thumb">
-                            <img src="static/img/teacher-img/{{teacher['image']}}.jpg" alt="">
-                        </div>
+                        <a href="/teachers_details?ID={{teacher['tid']}}">
+                            <div class="teacher_thumb" >
+                                <img src="{{teacher['image']}}" alt="">
+                            </div>
+                        </a>
                         <!-- Single Teacher Details Info -->
                         <div class="single_teacher_details_info">
-                            <h5>{{teacher['name'].title()}}</h5>
-                            <p>{{teacher['position'].title()}}</p>
+                            <h5>{{teacher.get('TeacherName', '')[0].title()}}</h5>
+                            <p>{{teacher.get('TeacherPosition', '')[0].title()}}</p>
                             <!-- Single Teacher Socila Links -->
                             <div class="teacher_social_info">
                                 <div class="social_icon">
-                                    {% if teacher['fb']: %} <a href="{{teacher['fb']}}"><i class="fa fa-facebook"></i></a>   {% endif %}
-                                    {% if teacher['twitter']: %} <a href="{{teacher['twitter']}}"><i class="fa fa-twitter"></i></a>  {% endif %}
-                                    {% if teacher['skype']: %} <a href="{{teacher['skype']}}#"><i class="fa fa-skype"></i></a> {% endif %}
-                                    {% if teacher['dribbble']: %} <a href="{{teacher['dribbble']}}"><i class="fa fa-dribbble"></i></a> {% endif %}
+                                    {% if teacher.get('fb', ''): %} <a href="{{teacher.get('fb', '')}}"><i class="fa fa-facebook"></i></a>   {% endif %}
+                                    {% if teacher.get('twitter', ''): %} <a href="{{teacher.get('twitter', '')}}"><i class="fa fa-twitter"></i></a>  {% endif %}
+                                    {% if teacher.get('skype', ''): %} <a href="{{teacher.get('skype', '')}}"><i class="fa fa-skype"></i></a> {% endif %}
+                                    {% if teacher.get('dribble', ''): %} <a href="{{teacher.get('dribbble', '')}}"><i class="fa fa-dribbble"></i></a> {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -44,32 +44,12 @@
             <div class="container">
                 <div class="row">
 
+  
                     <!-- Single gallery Item Start -->
+                    {% for imageinfo in images %}
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/1.jpg" alt="">
-                            <!-- Single gallery Item hover caption -->
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery One</h5>
-                                            <p>Event &amp; Planning</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/1.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/2.jpg" alt="">
+                            <img src="{{imageinfo['address']}}" alt="">
                             <!-- Single gallery Item hover caption -->
                             <div class="hover_overlay">
                                 <div class="table">
@@ -80,165 +60,16 @@
                                         </div>
                                         <!-- Popup links -->
                                         <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/2.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            <a class="magnific-popup" href="{{imageinfo['address']}}"><i class="fa fa-search" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
 
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/3.jpg" alt="">
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Three</h5>
-                                            <p>Meeting</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/3.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/4.jpg" alt="">
-                            <!-- Single gallery Item hover caption -->
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Four</h5>
-                                            <p>Studing</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/4.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/5.jpg" alt="">
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Five</h5>
-                                            <p>Team Work</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/5.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/6.jpg" alt="">
-                            <!-- Single gallery Item hover caption -->
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Six</h5>
-                                            <p>Studing</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/6.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/7.jpg" alt="">
-                            <!-- Single gallery Item hover caption -->
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Seven</h5>
-                                            <p>IT Coures</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/7.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/8.jpg" alt="">
-                            <!-- Single gallery Item hover caption -->
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Eight</h5>
-                                            <p>In Campus</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/8.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="single_gallery_item four-column">
-                            <img src="static/img/gallery/4.jpg" alt="">
-                            <!-- Single gallery Item hover caption -->
-                            <div class="hover_overlay">
-                                <div class="table">
-                                    <div class="table_cell">
-                                        <div class="gallery_info">
-                                            <h5>Gallery Nine</h5>
-                                            <p>Studing</p>
-                                        </div>
-                                        <!-- Popup links -->
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/gallery/4.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

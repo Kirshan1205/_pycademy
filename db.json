@@ -1,0 +1,46 @@
+{
+    "teachers": {
+        "arsham": {
+            "name": "Arsham Ali Shirkouhi",
+            "image": "arsham",
+            "fb": "http:\\\\fb.com\\pycademy",
+            "twitter": "http:\\\\fb.com\\pycademy",
+            "skype": "0060183552313",
+            "dribbble": "http:\\\\fb.com\\pycademy",
+            "position": "junior lecturer",
+            "details": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit,sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper suscipit lobortis nisl",
+            "youtube": "http:\\\\youtube.com\\pycademy"
+        },
+         "tabitha": {
+            "name": "Tabitha Yap",
+            "image": "arsham",
+            "fb": "http:\\\\fb.com\\wolfisam",
+            "twitter": "http:\\\\fb.com\\pycademy",
+            "skype": "0060183552313",
+            "dribbble": "http:\\\\fb.com\\pycademy",
+            "position": "junior lecturer",
+            "details": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit,sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper suscipit lobortis nisl",
+            "youtube": "http:\\\\youtube.com\\pycademy"
+        },
+        "kirshan": {
+            "name": "Kirshan Murali",
+            "image": "arsham",
+            "fb": "http:\\\\fb.com\\pycademy",
+            "twitter": "http:\\\\fb.com\\pycademy",
+            "skype": "0060183552313",
+            "dribbble": "http:\\\\fb.com\\pycademy",
+            "position": "junior lecturer",
+            "details": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit,sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper suscipit lobortis nisl",
+            "youtube": "http:\\\\youtube.com\\pycademy"
+        }
+        
+    },
+
+    "stat": {
+        "participationStat":{
+        "complete": 13,
+        "teachers": 120,
+        "studentEnrolled": 1300,
+        "freeCourses": 565}
+    }
+}

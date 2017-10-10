@@ -1,5 +1,10 @@
-from flask import Flask, render_template, redirect,request
+from flask import Flask, render_template, redirect,request, url_for, flash
 from database import db
+from werkzeug.utils import secure_filename
+import os, json
+from pymongo import MongoClient
+con = MongoClient("mongodb://maysam:0183552313@ds149479.mlab.com:49479/pycademy")
+database = con.pycademy
 
 app=Flask(__name__)
 
@@ -10,6 +15,7 @@ def index():
     
 @app.route('/teachers')
 def teachers():
+    print db.teachers()
     return render_template('teachers.html',teachers=db.teachers())
     
 @app.route('/layout')
@@ -19,18 +25,104 @@ def layout():
 @app.route('/error404')
 def error404():
     return render_template('404.html')
- 
-@app.route('/teachers_details/')
-@app.route('/teachers_details/<ID>')
-def teachers_details(ID="Arsham"):
-    rule = request.url_rule
-    url_rule = '/'
-    print rule
+
+def allowed_file(filename,ALLOWED_EXTENSIONS):
+    # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/edit_course', methods=["POST","GET"])
+@app.route('/create_course', methods=["POST","GET"])
+def create_course(cid=None):
+    print request.url.split('/')[-1][:11]
+    if request.method == "GET":
+        if request.url.split('/')[-1][:11]=='edit_course':
+            ID = request.args.get('ID','null')
+            course=db.course(ID)
+            return render_template('createcourse.html',course=course,action="edit_course?ID={}".format(ID))
+        return render_template('createcourse.html',course={},action="create_course")
+    else:
+        if ('image' not in request.files) or ('course_plan' not in request.files):
+            #flash('No file part')
+            return redirect(request.url)
+        imagefile = request.files['image']
+        coursefile = request.files['course_plan']
+        if imagefile.filename == '' or coursefile.filename == '':
+            #flash('No selected file')
+            return redirect(request.url)
+
+        if (imagefile and allowed_file(imagefile.filename,['png']))and(coursefile and allowed_file(coursefile.filename,['pdf'])):
+            if request.url.split('/')[-1][:11]=='edit_course':
+                ID = request.args.get('ID','null')
+                if ID:
+                    print database.courses.find({"cid":ID}), "-"*100
+                    db.editCourse(dict(request.form),coursefile,imagefile,ID)
+            else:
+                db.creatCourse(dict(request.form),coursefile,imagefile)
+            return str(request.form)
+        return 'not successful'
+        
+@app.route('/edit_teacher')
+@app.route('/add_teacher', methods=["POST","GET"])
+def add_teacher(tid=None):
+    if request.method == "GET":
+        ID = request.args.get('ID','')
+        if ID:
+            teacher=db.teacher(ID)
+        else:
+            teacher={}
+        if request.url.split('/')[-1][:12]=='edit_teacher':
+            ID = request.args.get('ID','')
+            teacher=db.teacher(ID)
+            return render_template('add_teacher.html',teacher=teacher)
+        return render_template('add_teacher.html',teacher={})
+    else:
+        if ('TeachersImage' not in request.files):
+            #flash('No file part')
+            return redirect(request.url)
+        imagefile = request.files['TeachersImage']
+        if imagefile.filename == '':
+            #flash('No selected file')
+            return redirect(request.url)
+
+        if imagefile and allowed_file(imagefile.filename,['png']):
+            db.addTeacher(dict(request.form),imagefile)
+            return str(request.form)
+        return 'not successful'
+
+@app.route('/teachers_details')
+def teachers_details():
+    ID = request.args.get('ID','guest')
     teacher=db.teacher(ID)
+    otherTeachers=db.otherTeachers(ID)
+    print otherTeachers ,'-'*10
+    stat=db.stat()
     if teacher:
-        return render_template('teachers-details.html')
+        return render_template('teachers-details.html',teacher=teacher, otherTeachers=otherTeachers,stat=stat)
     else:
         return redirect('/error404')
+   
+@app.route('/add_blog', methods=["POST", "GET"])
+def add_blog():
+    if request.method == "GET":
+        postInfo = db.blogInfo()
+        categoryTags = db.categoryTags()
+        tagsCloud = db.tagsCloud()
+        recentPosts = db.recentPost()
+        postData = db.blogSidebarInfo()
+        return render_template('add_blog.html',  postInfo={})
+    else:
+        if ('BlogImage' not in request.files):
+            #flash('No file part')
+            return redirect(request.url)
+        imagefile = request.files['BlogImage']
+        # if imagefile.filename == '':
+        #     #flash('No selected file')
+        #     return redirect(request.url)
+        if imagefile and allowed_file(imagefile.filename,['png']):
+            db.addBlog(dict(request.form),imagefile)
+            return str(request.form)
+        return 'not successful'
     
 @app.route('/register')
 def register():
@@ -51,27 +143,35 @@ def index_two():
     
 @app.route('/gallery_full_width')
 def gallery_full_width():
-    return render_template('gallery-fullwidth.html')
+    images=db.images()
+    return render_template('gallery-fullwidth.html', images=images)
     
 @app.route('/gallery_4_column')
 def gallery_4_column():
-    return render_template('gallery-4-column.html')
+    images=db.images()
+    return render_template('gallery-4-column.html', images=images)
 
 @app.route('/gallery_3_column')
 def gallery_3_column():
-    return render_template('gallery-3-column.html')
+    images=db.images()
+    return render_template('gallery-3-column.html', images=images)
     
 @app.route('/gallery_2_column')
 def gallery_2_column():
-    return render_template('gallery-2-column.html')
+    images=db.images()
+    return render_template('gallery-2-column.html', images=images)
 
 @app.route('/single')
 def single():
     return render_template('single.html')
     
-@app.route('/single_sidebar')
+@app.route('/single_blog')
 def single_sidebar():
-    return render_template('single-sidebar.html')
+    categoryTags = db.categoryTags()
+    tagsCloud = db.tagsCloud()
+    recentPosts = db.recentPost()
+    postInfo = db.blogInfo()
+    return render_template('single-blog.html', categoryTags=categoryTags, tagsCloud=tagsCloud, recentPosts=recentPosts, postInfo=postInfo)
 
 @app.route('/event_list')
 def event_list():
@@ -81,22 +181,34 @@ def event_list():
 def event_grid():
     return render_template('event-grid.html')
     
-   
 @app.route('/event_details')
 def event_details():
     return render_template('event-details.html')
 
 @app.route('/course_list')
 def course_list():
-    return render_template('course-list.html')
+    courses=db.courses()
+    page = request.args.get('page','0')
+    print page
+    return render_template('course-list.html', courses=courses)
     
 @app.route('/course_grid')
 def course_grid():
-    return render_template('course-grid.html')
+    courses=db.courses()
+    print courses,"-"*100
+    page = request.args.get('page','0')
+    print page
+    return render_template('course-grid.html', courses=courses)
 
 @app.route('/course_details')
 def course_details():
-    return render_template('course-details.html')
+    ID = request.args.get('ID','null')
+    course=db.course(ID)
+    if course:
+        print course
+        return render_template('course-details.html', course=course)
+    else:
+        return redirect('/error404')
     
 @app.route('/contact')
 def contact():
@@ -112,7 +224,12 @@ def blog():
     
 @app.route('/blog_sidebar')
 def blog_sidebar():
-    return render_template('blog-sidebar.html')
+    postInfo = db.blogInfo()
+    categoryTags = db.categoryTags()
+    tagsCloud = db.tagsCloud()
+    recentPosts = db.recentPost()
+    postData = db.blogSidebarInfo()
+    return render_template('blog-sidebar.html', postData=postData, postInfo=postInfo, categoryTags=categoryTags, tagsCloud=tagsCloud, recentPosts=recentPosts)
         
 @app.route('/about_us')
 def about_us():
@@ -121,6 +238,3 @@ def about_us():
 
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0',port=8080)
-    
-    
-    

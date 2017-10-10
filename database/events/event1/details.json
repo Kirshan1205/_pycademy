@@ -1,0 +1,24 @@
+{
+    "title": "blabla",
+    "date": "17 sep 2017",
+    "time": "20:30",
+    "description": "lorem sdfasdf;dflk;sadfk",
+    "categories": { "a", "b", "c" }
+    "speakers": {
+        1: {
+            "name": "blabla",
+            "position": "teltela",
+            "img": "helahela"
+        },
+        1: {
+            "name": "blabla",
+            "position": "teltela",
+            "img": "helahela"
+        },
+        1: {
+            "name": "blabla",
+            "position": "teltela",
+            "img": "helahela"
+        }
+    }
+}

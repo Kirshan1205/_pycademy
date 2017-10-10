@@ -1,0 +1,142 @@
+{% extends "layout.html" %} {% block mainContent %}
+
+<!-- ===================== Breadcumb area start ===================== -->
+<section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcumb_section">
+                    <!-- Breadcumb page title start -->
+                    <div class="page_title">
+                        <h3>Teacher</h3>
+                    </div>
+                    <!-- Breadcumb page pagination start -->
+                    <div class="page_pagination">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li>Teacher Details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===================== Breadcumb area end ===================== -->
+
+<!-- ================= All Our Teacher Area Start =============== -->
+<form action="add_teacher" method="POST" enctype="multipart/form-data">
+    <section class="all_our_teacher_area section_padding_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <!-- Teacher Full Image Start -->
+                    <div class="teacher_full_image">
+                        <input type="file" name="TeachersImage"/>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <!-- Teacher Details Info Area Start -->
+                    <div class="teacher_details_info">
+                        <!-- Teacher Name Designation Start -->
+                        <div class="name_designation">
+                            <input type="text" name="TeacherName" placeholder="Add Teacher Name" value="{{teacher.get('TeacherName', '')[0]}}" />
+                            <input type="text" name="TeacherPosition" placeholder="Add Teacher Position" value="{{teacher.get('TeacherPosition', '')[0]}}"/>
+                        </div>
+                        <!-- About Teacher Start -->
+                        <div class="about_teacher">
+                            <input type="text" name="TeacherDetails" placeholder="Add Teacher Details" value="{{teacher.get('TeacherDetails', '')[0]}}"/>
+                        </div>
+                        <!-- Teacher Contact Info Start -->
+                        <div class="teacher_contact_info">
+                            <!-- Single Contact Info Start -->
+                            {% if teacher.get('address', False): %}
+                            <div class="tea_single_contact_info">
+                                <div class="contact_icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <div class="contact_data">
+                                    <input type="text" name="TeacherAddress" placeholder="Add Teacher Address" />
+                                    <p>{{teacher.get('address', False)}}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- Single Contact Info Start -->
+                            {% if teacher.get('email', False): %}
+                            <div class="tea_single_contact_info">
+                                <div class="contact_icon">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="contact_data">
+                                    <input type="text" name="TeacherEmail" value="{{teacher.get('email', False)}}" placeholder="Add Teacher Email" />
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- Single Contact Info Start -->
+                            {% if teacher.get('contact', False): %}
+                            <div class="tea_single_contact_info">
+                                <div class="contact_icon">
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </div>
+                                <div class="contact_data">
+                                    <input type="text" name="TeacherContact" placeholder="Add Teacher Contact" />
+                                    <p>{{teacher.get('contact', False)}}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- Single Contact Info Start -->
+                            {% if teacher.get('website', False): %}
+                            <div class="tea_single_contact_info">
+                                <div class="contact_icon">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                </div>
+                                <div class="contact_data">
+                                    <input type="text" name="TeacherWebsite" placeholder="Add Teacher's Website" />
+                                    <p>{{teacher.get('website', False)}}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- Single Contact Info Start -->
+                            {% if teacher.get('certificate', False): %}
+                            <div class="tea_single_contact_info">
+                                <div class="contact_icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div>
+                                <div class="contact_data">
+                                    <input type="text" name="TeacherCertificate" placeholder="Add Teacher Certificate" />
+                                    <p>{{teacher.get('certificate', False)}}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- Single Contact Info Start -->
+                            <div class="tea_single_contact_info">
+                                <div class="contact_icon social">
+
+                                    <input type="text" name="fb" value="{{teacher.get('fb', '')[0]}}" placeholder="Teachers' Facebook Link" />
+                                </div>
+                                <div class="contact_icon social">
+                                    <input type="text" name="twitter" value="{{teacher.get('twitter', '')[0]}}" placeholder="Teachers' Twitter Link" />
+                                </div>
+                                <div class="contact_icon social">
+                                    <input type="text" name="googleplus" value="{{teacher.get('googleplus', '')[0]}}" placeholder="Teachers' GooglePlus Link" />
+                                </div>
+                                <div class="contact_icon social">
+                                    <input type="text" name="pinterest" value="{{teacher.get('pinterest', '')[0]}}" placeholder="Teachers' Pinterest Link" />
+                                </div>
+                                <div class="contact_icon social">
+                                    <input type="text" name="youtube" value="{{teacher.get('youtube', '')[0]}}" placeholder="Teachers' Youtube Link" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Teacher Contact Info End -->
+                        <input class="btn btn-1 btn-default btn-lg active" type="submit" value="Submit" />
+                    </div>
+                    <!-- Teacher Details Info Area End -->
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<!-- ===================== All Our Teacher Area End ==================== -->
+{% endblock %}
