@@ -1,0 +1,100 @@
+{% extends "layout.html" %} {% block mainContent %}
+<form action="edit_stats" method="POST" enctype="multipart/form-data">
+    <section class="cool_facts_area home2 section_padding_100_70 borders">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfCourses" value='{{stats.get("NumberOfCourses","")[0]}}' />
+                        <h5>Courses</h5>
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfSeats" value='{{stats.get("NumberOfSeats","")[0]}}' />
+                        <h5>Seats</h5>
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfTeachers" value='{{stats.get("NumberOfTeachers","")[0]}}' />
+                        <h5>TEACHERS</h5>
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfGraduates" value='{{stats.get("NumberOfGraduates","")[0]}}' />
+                        <h5>Graduates</h5>
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfHappyStudents" value='{{stats.get("NumberOfHappyStudents","")[0]}}' />
+                        <h5>Happy Students</h5>
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfAwards" value='{{stats.get("NumberOfAwards","")[0]}}' />
+                        <h5>Awards</h5>
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+                <div class="col-12 col-sm-4 col-lg-2 item">
+                    <!-- Single Cool Facts area Start -->
+                    <div class="cool_fact_text">
+                        <span class="icon-trophy"></span>
+                        <input type="text" class="formText" name="NumberOfStudentsEnrolled" value='{{stats.get("NumberOfStudentsEnrolled","")[0]}}' />
+                        <h5>Students Enrolled</h5>
+                    </div>
+
+                    <div class="col-12 col-sm-4 col-lg-2 item">
+                        <!-- Single Cool Facts area Start -->
+                        <div class="cool_fact_text">
+                            <span class="icon-trophy"></span>
+                            <input type="text" class="formText" name="NumberOfCertifiedTeachers" value='{{stats.get("NumberOfCertifiedTeachers","")[0]}}' />
+                            <h5>Certified Teachers</h5>
+                        </div>
+
+                        <div class="col-12 col-sm-4 col-lg-2 item">
+                            <!-- Single Cool Facts area Start -->
+                            <div class="cool_fact_text">
+                                <span class="icon-trophy"></span>
+                                <input type="text" class="formText" name="NumberOfComplateGraduates" value='{{stats.get("NumberOfComplateGraduates","")[0]}}' />
+                                <h5>Complate Graduates</h5>
+                            </div>
+                            <!-- Single Cool Facts area End -->
+                        </div>
+                        <!-- Single Cool Facts area End -->
+                    </div>
+                    <!-- Single Cool Facts area End -->
+                </div>
+                <input style="margin-bottom:15px;" class="formButton button2" type="submit" value="Submit" role="button" />
+            </div>
+        </div>
+    </section>
+</form>
+{% endblock %}

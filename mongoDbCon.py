@@ -33,9 +33,9 @@ db = con.pycademy
 # }
 
 #db.courses.drop()
-# db.teachers.drop()
+db.teachers.drop()
 # print list(db.teachers.find())
-#db.courses.drop()
+# db.courses.drop()
 print 'this is it',db.sttttt.count()
 print 'this is it',list(db.courses.find({},{"cid":1, "_id":0}))[:20]
 

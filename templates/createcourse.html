@@ -47,7 +47,7 @@
                     <!-- Courses Details Thumb Area Start -->
                     <div class="courses_details_thumb">
                         <div class="orange-border">
-                            <input type="file" name="image" placeholder="Add Image" />
+                            <input class="margins button" type="file" name="image" placeholder="Add Image" />
                         </div>
                         <!-- Courses Details Thumb Caption Area Start -->
                     </div>
@@ -60,16 +60,15 @@
 
                     <!-- Courses Overview Content -->
                     <div class="couress_overview_content">
-                        <input class="form-control" type="text" name="title" placeholder="Add Title" value='{{course.get("title","")[0]}}' />
-
-                        <!-- Course Teacher -->
-                        <div class="courses_overview">
-                            <h5>Courses Teacher</h5>
-                        </div>
-
-                        <!-- Course Teacher -->
-
+                        <input class="form-control" type="text" name="title" placeholder="Add Title" value='{{course.get("title","")[0]}}'/>
                     </div>
+                    <!-- Course Teacher -->
+                    <div class="courses_overview">
+                        <h5>Courses Teacher</h5>
+                    </div>
+
+                    <!-- Course Teacher <-->
+                    </-->
                     <div class="couress_overview_content">
                         <input class="form-control" type="text" name="teacherID" placeholder="Add Teacher" value='{{course.get("teacherID","")[0]}}' />
 
@@ -93,8 +92,8 @@
                     </div>
 
                     <!-- Single Courses Area Start -->
-                    <div class="row">
-                        <input style="margin-top:10px; margin-bottom:10px;" class="form-control" type="text" name="prerequisiteIDs" placeholder="Enter IDs'"value='{{course.get(prerequisiteIDs, "")}}' />
+                    <div class="courses_description_content">
+                        <input class="form-control" type="text" name="prerequisiteIDs" placeholder="Enter IDs'" value='{{course.get(prerequisiteIDs, "")}}' />
                     </div>
                     <!-- Single Courses Area End -->
 
@@ -104,10 +103,10 @@
                     </div>
 
                     <!-- Single Courses Area Start -->
-                    <div class="row">
-                        <input style="margin-top:10px; margin-bottom:10px;" class="form-control" type="text" name="relatedIDs" placeholder="Enter IDs'" value='{{course.get(relatedIDs, "")}}' /> 
-                        
+                    <div class="courses_description_content">
+                        <input style="margin-top:10px; margin-bottom:10px;" class="form-control" type="text" name="relatedIDs" placeholder="Enter IDs'" value='{{course.get(relatedIDs, "")}}' />
                     </div>
+                    <input style="margin-bottom:15px;" class="formButton button2" type="submit" value="Submit" role="button" />
                     <!-- Single Courses Area End -->
                 </div>
 
@@ -176,12 +175,18 @@
                                         <input class="form" type="file" name="course_plan" placeholder="Add Course Plan" value='{{course.get("coursePlan","")[0]}}' />
                                     </div>
                                 </div>
+                                <div class="col-12 clearfix">
+                                    <div class="single_option clearfix">
+                                        <input type="radio" name="courseActive" id="Active" value="Active">Active
+                                        <input type="radio" name="courseActive" id="Inactive" value="Inactive">Inactive
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
                     </div>
                 </div>
-                <input class="button button2" type="submit" value="Submit" role="button" />
+
                 <!-- Sidebar Area End -->
             </div>
         </div>

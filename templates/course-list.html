@@ -33,6 +33,7 @@
 
                 <!-- Single Courses Area Start -->
                 {% for course in courses %}
+                    {% if course.get('courseActive')[0].title() == 'Active' %}
                     <div class="col-12">
                         <div class="single_courses course-list">
                             <div class="single_courses_thumb" style="background-image: url({{course.get('image', '')}});">
@@ -46,14 +47,14 @@
                             <div class="single_courses_desc">
                                 <!-- Single Courses Title Area End -->
                                 <div class="title">
-                                    <a href="course_details?ID={{course.get('cid', '')}}"><h5>{{course.get('title', '')}}</h5></a>
-                                    <p>{{course.get('title', '')}}</p>
-                                    <p><i class="fa fa-user" aria-hidden="true"></i> {{course.get('teacherID', '')}}</p>
+                                    <a href="course_details?ID={{course.get('cid', '')}}"><h5>{{course.get('title', '')[0].title()}}</h5></a>
+                                    <p>{{course.get('title', '')[0].title()}}</p>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> {{course.get('teacherID', '')[0].title()}}</p>
                                 </div>
                                 <!-- Single Courses Blog Title Area End -->
                                 <div class="price_rating_area">
                                     <div class="price">
-                                        <span>{{course.get('price', '')}}</span>
+                                        <span>{{course.get('price', '')[0].title()}}</span>
                                     </div>
                                     <div class="seat">
                                         <i class="fa fa-users" aria-hidden="true"><span>{{course.get('enrolled', '')}}</span></i>
@@ -62,6 +63,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 {% endfor %}
                 <!-- Single Courses Area End -->
             </div>

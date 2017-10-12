@@ -26,14 +26,14 @@
 <!-- ===================== Breadcumb area end ===================== -->
 
 <!-- ================= All Our Teacher Area Start =============== -->
-<form action="add_teacher" method="POST" enctype="multipart/form-data">
+<form action="{{action}}" method="POST" enctype="multipart/form-data">
     <section class="all_our_teacher_area section_padding_100">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-12">
                     <!-- Teacher Full Image Start -->
                     <div class="teacher_full_image">
-                        <input type="file" name="TeachersImage"/>
+                        <input type="file" name="TeachersImage" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -42,11 +42,11 @@
                         <!-- Teacher Name Designation Start -->
                         <div class="name_designation">
                             <input type="text" name="TeacherName" placeholder="Add Teacher Name" value="{{teacher.get('TeacherName', '')[0]}}" />
-                            <input type="text" name="TeacherPosition" placeholder="Add Teacher Position" value="{{teacher.get('TeacherPosition', '')[0]}}"/>
+                            <input type="text" name="TeacherPosition" placeholder="Add Teacher Position" value="{{teacher.get('TeacherPosition', '')[0]}}" />
                         </div>
                         <!-- About Teacher Start -->
                         <div class="about_teacher">
-                            <input type="text" name="TeacherDetails" placeholder="Add Teacher Details" value="{{teacher.get('TeacherDetails', '')[0]}}"/>
+                            <input type="text" name="TeacherDetails" placeholder="Add Teacher Details" value="{{teacher.get('TeacherDetails', '')[0]}}" />
                         </div>
                         <!-- Teacher Contact Info Start -->
                         <div class="teacher_contact_info">
@@ -128,8 +128,11 @@
                                     <input type="text" name="youtube" value="{{teacher.get('youtube', '')[0]}}" placeholder="Teachers' Youtube Link" />
                                 </div>
                             </div>
+
                         </div>
                         <!-- Teacher Contact Info End -->
+                        <input type="radio" name="teacherActive" id="Active" value="Active">Active <br>
+                        <input type="radio" name="teacherActive" id="Inactive" value="Inactive">Inactive <br>
                         <input class="btn btn-1 btn-default btn-lg active" type="submit" value="Submit" />
                     </div>
                     <!-- Teacher Details Info Area End -->

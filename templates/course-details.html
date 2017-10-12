@@ -1,252 +1,272 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block mainContent %}
+<!--  ===================== Header Area End ===================== -->
 
-    {% block mainContent %}
-    <!--  ===================== Header Area End ===================== -->
-
-    <!-- Breadcumb area start -->
-    <section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="breadcumb_section">
-                        <!-- Breadcumb page title start -->
-                        <div class="page_title">
-                            <h3>Course Detail</h3>
-                        </div>
-                        <!-- Breadcumb page pagination start -->
-                        <div class="page_pagination">
-                            <ul>
-                                <li><a href="index">Home</a></li>
-                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                                <li>Course Details</li>
-                            </ul>
-                        </div>
+<!-- Breadcumb area start -->
+<section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcumb_section">
+                    <!-- Breadcumb page title start -->
+                    <div class="page_title">
+                        <h3>Course Detail</h3>
+                    </div>
+                    <!-- Breadcumb page pagination start -->
+                    <div class="page_pagination">
+                        <ul>
+                            <li><a href="index">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li>Course Details</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Breadcumb area end -->
+    </div>
+</section>
+<!-- Breadcumb area end -->
 
-    <!-- ============================== Courses Details Area Start ============================== -->
+<!-- ============================== Courses Details Area Start ============================== -->
 
-    <section class="courses_details_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-7 col-lg-8">
+<section class="courses_details_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 col-lg-8">
 
-                    <!-- Courses Details Thumb Area Start -->
-                    <div class="courses_details_thumb">
-                        <img src="{{course.get('image','NaN')}}" alt="">
-                        <!-- Courses Details Thumb Caption Area Start -->
-                    </div>
-                    <!-- Courses Details Thumb Area End -->
+                <!-- Courses Details Thumb Area Start -->
+                <div class="courses_details_thumb">
+                    <img src="{{course.get('image','NaN')}}" alt="">
+                    <!-- Courses Details Thumb Caption Area Start -->
+                </div>
+                <!-- Courses Details Thumb Area End -->
 
-                    <!-- Courses Overview -->
-                    <div class="courses_overview">
-                        <h5>Courses Overview</h5>
-                    </div>
+                <!-- Courses Overview -->
+                <div class="courses_overview">
+                    <h5>Courses Overview</h5>
+                </div>
 
-                    <!-- Courses Overview Content -->
-                    <div class="couress_overview_content">
-                        <p>{{course.get('title','NaN')[0].title()}}</p>
-                    </div>
+                <!-- Courses Overview Content -->
+                <div class="couress_overview_content">
+                    <p>{{course.get('title','NaN')[0].title()}}</p>
+                </div>
 
-                    <!-- Courses Description -->
-                    <div class="courses_description">
-                        <h5>Course Description</h5>
-                    </div>
+                <!-- Course Teacher -->
+                <div class="courses_overview">
+                    <h5>Courses Teacher</h5>
+                </div>
 
-                    <!-- Courses Description Content -->
-                    <div class="courses_description_content">
-                        <p>{{course.get('description','NaN')[0].title()}}</p>
-                        
-                    </div>
-                    <!-- Courses Description -->
-                    <div class="courses_description">
-                        <h5>Prerequisite Courses</h5>
-                    </div>
+                <!--Courses Teachers-->
+                <div class="couress_overview_content">
+                    <p>{{course.get('teacherID','NaN')[0].title()}}</p>
+                </div>
 
+                <!-- Courses Description -->
+                <div class="courses_description">
+                    <h5>Course Description</h5>
+                </div>
+
+                <!-- Courses Description Content -->
+                <div class="courses_description_content">
+                    <p>{{course.get('description','NaN')[0].title()}}</p>
+
+                </div>
+                <!-- Courses Description -->
+                <div class="courses_description">
+                    <h5>Prerequisite Courses</h5>
+                </div>
+
+                <!-- Single Courses Area Start -->
+                <div class="row">
+                    {% for prerequisiteCourse in course["prerequisite"] %}
                     <!-- Single Courses Area Start -->
-                    <div class="row">
-                        {% for prerequisiteCourse in course["prerequisite"] %}
-                        <!-- Single Courses Area Start -->
-                        <div class="col-12 col-lg-6">
-                            <div class="single_courses related">
-                                <div class="single_courses_thumb">
-                                    <img src="static/img/course-img/softwareengineer.jpg" alt="">
-                                    <div class="hover_overlay">
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/course-img/softwareengineer.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="single_courses related">
+                            <div class="single_courses_thumb">
+                                <img src="static/img/course-img/softwareengineer.jpg" alt="">
+                                <div class="hover_overlay">
+                                    <div class="links">
+                                        <a class="magnific-popup" href="static/img/course-img/softwareengineer.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
-                                <!-- Single Courses Image Area End -->
-                                <div class="single_courses_desc">
-                                    <!-- Single Courses Title Area End -->
-                                    <div class="title">
-                                        <a href="#"><h5>{{prerequisiteCourse["title"][0].title()}}</h5></a>
-                                        <p><i class="fa fa-user" aria-hidden="true"></i> {{prerequisiteCourse["teacherID"][0].title()}}</p>
-                                        <p>{{prerequisiteCourse["description"][0].title()}}</p>
+                            </div>
+                            <!-- Single Courses Image Area End -->
+                            <div class="single_courses_desc">
+                                <!-- Single Courses Title Area End -->
+                                <div class="title">
+                                    <a href="#">
+                                        <h5>{{prerequisiteCourse["title"][0].title()}}</h5>
+                                    </a>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> {{prerequisiteCourse["teacherID"][0].title()}}</p>
+                                    <p>{{prerequisiteCourse["description"][0].title()}}</p>
+                                </div>
+                                <!-- Single Courses Blog Title Area End -->
+                                <div class="price_rating_area">
+                                    <div class="price">
+                                        <span>{{prerequisiteCourse["price"][0].title()}}</span>
                                     </div>
-                                    <!-- Single Courses Blog Title Area End -->
-                                    <div class="price_rating_area">
-                                        <div class="price">
-                                            <span>{{prerequisiteCourse["price"][0].title()}}</span>
-                                        </div>
-                                        <div class="seat">
-                                            <i class="fa fa-users" aria-hidden="true"><span>{{prerequisiteCourse["seats"][0].title()}}</span></i>
-                                        </div>
+                                    <div class="seat">
+                                        <i class="fa fa-users" aria-hidden="true"><span>{{prerequisiteCourse["seats"][0].title()}}</span></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Single Courses Area End -->
-                        {% endfor %}
                     </div>
                     <!-- Single Courses Area End -->
-                    
-                    <!-- Courses Description -->
-                    <div class="courses_description">
-                        <h5>Related Courses</h5>
-                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Single Courses Area End -->
 
+                <!-- Courses Description -->
+                <div class="courses_description">
+                    <h5>Related Courses</h5>
+                </div>
+
+                <!-- Single Courses Area Start -->
+                <div class="row">
+                    {% for relatedCourse in course["relateds"] %}
                     <!-- Single Courses Area Start -->
-                    <div class="row">
-                        {% for relatedCourse in course["relateds"] %}
-                        <!-- Single Courses Area Start -->
-                        <div class="col-12 col-lg-6">
-                            <div class="single_courses related">
-                                <div class="single_courses_thumb">
-                                    <img src="static/img/course-img/softwareengineer.jpg" alt="">
-                                    <div class="hover_overlay">
-                                        <div class="links">
-                                            <a class="magnific-popup" href="static/img/course-img/softwareengineer.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="single_courses related">
+                            <div class="single_courses_thumb">
+                                <img src="static/img/course-img/softwareengineer.jpg" alt="">
+                                <div class="hover_overlay">
+                                    <div class="links">
+                                        <a class="magnific-popup" href="static/img/course-img/softwareengineer.jpg"><i class="fa fa-search" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
-                                <!-- Single Courses Image Area End -->
-                                <div class="single_courses_desc">
-                                    <!-- Single Courses Title Area End -->
-                                    <div class="title">
-                                        <a href="#"><h5>{{relatedCourse["title"][0].title()}}</h5></a>
-                                        <p><i class="fa fa-user" aria-hidden="true"></i> {{relatedCourse["teacherID"][0].title()}}</p>
-                                        <p>{{relatedCourse["description"][0].title()}}</p>
+                            </div>
+                            <!-- Single Courses Image Area End -->
+                            <div class="single_courses_desc">
+                                <!-- Single Courses Title Area End -->
+                                <div class="title">
+                                    <a href="#">
+                                        <h5>{{relatedCourse["title"][0].title()}}</h5>
+                                    </a>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> {{relatedCourse["teacherID"][0].title()}}</p>
+                                    <p>{{relatedCourse["description"][0].title()}}</p>
+                                </div>
+                                <!-- Single Courses Blog Title Area End -->
+                                <div class="price_rating_area">
+                                    <div class="price">
+                                        <span>{{relatedCourse["price"][0].title()}}</span>
                                     </div>
-                                    <!-- Single Courses Blog Title Area End -->
-                                    <div class="price_rating_area">
-                                        <div class="price">
-                                            <span>{{relatedCourse["price"][0].title()}}</span>
-                                        </div>
-                                        <div class="seat">
-                                            <i class="fa fa-users" aria-hidden="true"><span>{{relatedCourse["seats"][0].title()}}</span></i>
-                                        </div>
+                                    <div class="seat">
+                                        <i class="fa fa-users" aria-hidden="true"><span>{{relatedCourse["seats"][0].title()}}</span></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Single Courses Area End -->
-                        {% endfor %}
-                </div>
-                </div>
-                <!-- ==================== Sidebar Area Start ==================== -->
-                <div class="col-12 col-md-5 col-lg-4">
-                    <div class="sidebar_area">
-
-                        <!-- Single Sidebar Content Start -->
-                        <div class="single_sidebar_content">
-                            <div class="row">
-
-                                <!-- Single Option -->
-                                <div class="col-6 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-usd" aria-hidden="true"></i>
-                                        <p>Fee:</p>
-                                        <p>{{course.get('price', 'NaN')[0].title()}}</p>
-                                    </div>
-                                </div>
-
-                                <!-- Single Option -->
-                                <div class="col-6 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                        <p>Total Seats:</p>
-                                        <p>{{course.get('seats','NaN')[0].title()}}</p>
-                                    </div>
-                                </div>
-                                <!-- Single Option -->
-                                <div class="col-6 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                        <p>Start:</p>
-                                        <p>{{course.get('start','NaN')[0].title()}}</p>
-                                    </div>
-                                </div>
-                                <!-- Single Option -->
-                                <div class="col-6 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-                                        <p>End:</p>
-                                        <p>{{course.get('end','NaN')[0].title()}}</p>
-                                    </div>
-                                </div>
-                                <!-- Single Option -->
-                                <div class="col-6 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                        <p>Location:</p>
-                                        <p>{{course.get('location','NaN')[0].title()}}</p>
-                                    </div>
-                                </div>
-                                <!-- Single Option -->
-                                <div class="col-6 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <p>Duration :</p>
-                                        <p>{{course.get('duration','NaN')[0].title()}}</p>
-                                    </div>
-                                </div>
-
-                                <!-- Single Option -->
-                                <div class="col-12 clearfix">
-                                    <div class="single_option clearfix">
-                                        <i class="fa fa-download" aria-hidden="true"></i>
-                                        <h5><a href="{{course.get('coursePlan','NaN')}}" download>Download Full Course Plan</a></h5>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Single Sidebar Content End -->
-
-                        <!-- Single Sidebar Content Start -->
-                        <div class="single_sidebar_content">
-                            <!-- Event Share Links -->
-                            <div class="event_share_links">
-                                <div class="single_share_link">
-                                    <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="single_share_link">
-                                    <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="single_share_link">
-                                    <a href=""><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="single_share_link">
-                                    <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="single_share_link">
-                                    <a href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Sidebar Content End -->
                     </div>
+                    <!-- Single Courses Area End -->
+                    {% endfor %}
+                    <a href="edit_course?ID={{ID}}" style="margin-bottom:15px;text-decoration:none;" class="formButton button2" role="button">Edit Course</a>
+                    
                 </div>
-                <!-- Sidebar Area End -->
             </div>
+            <!-- ==================== Sidebar Area Start ==================== -->
+            <div class="col-12 col-md-5 col-lg-4">
+                <div class="sidebar_area">
+
+                    <!-- Single Sidebar Content Start -->
+                    <div class="single_sidebar_content">
+                        <div class="row">
+
+                            <!-- Single Option -->
+                            <div class="col-6 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-usd" aria-hidden="true"></i>
+                                    <p>Fee:</p>
+                                    <p>{{course.get('price', 'NaN')[0].title()}}</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Option -->
+                            <div class="col-6 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <p>Total Seats:</p>
+                                    <p>{{course.get('seats','NaN')[0].title()}}</p>
+                                </div>
+                            </div>
+                            <!-- Single Option -->
+                            <div class="col-6 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                    <p>Start:</p>
+                                    <p>{{course.get('start','NaN')[0].title()}}</p>
+                                </div>
+                            </div>
+                            <!-- Single Option -->
+                            <div class="col-6 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                                    <p>End:</p>
+                                    <p>{{course.get('end','NaN')[0].title()}}</p>
+                                </div>
+                            </div>
+                            <!-- Single Option -->
+                            <div class="col-6 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <p>Location:</p>
+                                    <p>{{course.get('location','NaN')[0].title()}}</p>
+                                </div>
+                            </div>
+                            <!-- Single Option -->
+                            <div class="col-6 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <p>Duration :</p>
+                                    <p>{{course.get('duration','NaN')[0].title()}}</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Option -->
+                            <div class="col-12 clearfix">
+                                <div class="single_option clearfix">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    <h5><a href="{{course.get('coursePlan','NaN')}}" download>Download Full Course Plan</a></h5>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 clearfix">
+                                <div class="single_option clearfix">
+                                    <h5>{{course.get("courseActive", "")[0].title()}}</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Single Sidebar Content End -->
+
+                    <!-- Single Sidebar Content Start -->
+                    <div class="single_sidebar_content">
+                        <!-- Event Share Links -->
+                        <div class="event_share_links">
+                            <div class="single_share_link">
+                                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="single_share_link">
+                                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="single_share_link">
+                                <a href=""><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="single_share_link">
+                                <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="single_share_link">
+                                <a href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Sidebar Content End -->
+                </div>
+            </div>
+            <!-- Sidebar Area End -->
         </div>
-    </section>
-    <!-- =============== Courses Details Area End =============== -->
+    </div>
+</section>
+<!-- =============== Courses Details Area End =============== -->
 
 {% endblock %}

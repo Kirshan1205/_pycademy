@@ -94,9 +94,6 @@ def course(ID):
         return {}
     # return webDb['courses'].get(ID,False)
 
-def stat():
-    return db.stats.find({"sid":"participationStat"}).next()
-    # # return webDb['stat']
     
 def images():
     c=db.images.find()
@@ -175,24 +172,17 @@ def editCourse(info,coursefile,imgfile,ID):
     coursefile.save(coursefilename)
     info['image']=imagefilename
     info['coursePlan']=coursefilename
-    db.courses.update({"cid":cid}, {"$set":{"title":info["title"]}})
-    db.courses.update({"cid":cid}, {"$set":{"description":info["description"]}})
-    db.courses.update({"cid":cid}, {"$set":{"price":info["price"]}})
-    db.courses.update({"cid":cid}, {"$set":{"seats":info["seats"]}})
-    db.courses.update({"cid":cid}, {"$set":{"start":info["start"]}})
-    db.courses.update({"cid":cid}, {"$set":{"end":info["end"]}})
-    db.courses.update({"cid":cid}, {"$set":{"location":info["location"]}})
-    db.courses.update({"cid":cid}, {"$set":{"duration":info["duration"]}})
-    
+    db.courses.update({"cid":cid}, {"$set":info})
     return True
 
-# def updateTeacher(info,tid):
-#     imagefilename= os.path.join('static/img/teacher-img/{}.png'.format(tid))
-#     info['image']=imagefilename
-#     imgfile.save(imagefilename)
-#     print info
-#     db.teachers.update(info)
-#     return True
+def updateTeacher(info,imgfile,ID):
+    tid = ID
+    imagefilename= os.path.join('static/img/teacher-img/{}.png'.format(tid))
+    info['image']=imagefilename
+    imgfile.save(imagefilename)
+    print info
+    db.teachers.update({"tid":tid}, {"$set":info})
+    return True
     
 def addBlog(info,imgfile):
     bid='t12'
@@ -203,3 +193,23 @@ def addBlog(info,imgfile):
     print info
     db.blogs.insert(info)
     return True
+    
+def updateStat(stat):
+    # stat={"data":"general",
+    #     "countTeachers":db.teachers.count(),
+    #     "countCourses":db.courses.count(),
+    #     "countStudents":db.students.count(),
+    #     "countBlogs":db.blogs.count(),
+    #     "countEvents":db.Events.count()}
+    stat["data"]="general"
+    db.stats.drop()
+    db.stats.insert(stat)
+    # db.stats.update_one({"data":"general"},{'$set':stat}, upsert=False)
+    return str(stat)
+    
+def stat():
+    try:
+        return db.stats.find({"data":"general"}).next()
+    except:
+        return {}
+    # return db.stats.find({"sid":"participationStat"}).next()

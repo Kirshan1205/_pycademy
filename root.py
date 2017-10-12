@@ -11,7 +11,7 @@ app=Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', stats=db.stat())
     
 @app.route('/teachers')
 def teachers():
@@ -59,10 +59,10 @@ def create_course(cid=None):
                     db.editCourse(dict(request.form),coursefile,imagefile,ID)
             else:
                 db.creatCourse(dict(request.form),coursefile,imagefile)
-            return str(request.form)
+            return redirect("/courses_grid")
         return 'not successful'
         
-@app.route('/edit_teacher')
+@app.route('/edit_teacher', methods=["POST","GET"])
 @app.route('/add_teacher', methods=["POST","GET"])
 def add_teacher(tid=None):
     if request.method == "GET":
@@ -74,8 +74,8 @@ def add_teacher(tid=None):
         if request.url.split('/')[-1][:12]=='edit_teacher':
             ID = request.args.get('ID','')
             teacher=db.teacher(ID)
-            return render_template('add_teacher.html',teacher=teacher)
-        return render_template('add_teacher.html',teacher={})
+            return render_template('add_teacher.html',teacher=teacher,action="edit_teacher?ID={}".format(ID))
+        return render_template('add_teacher.html',teacher={},action="add_teacher")
     else:
         if ('TeachersImage' not in request.files):
             #flash('No file part')
@@ -84,10 +84,16 @@ def add_teacher(tid=None):
         if imagefile.filename == '':
             #flash('No selected file')
             return redirect(request.url)
-
+        
         if imagefile and allowed_file(imagefile.filename,['png']):
-            db.addTeacher(dict(request.form),imagefile)
-            return str(request.form)
+            if request.url.split('/')[-1][:12]=='edit_teacher':
+                ID = request.args.get('ID','null')
+                if ID:
+                    print "hello"
+                    db.updateTeacher(dict(request.form),imagefile,ID)
+            else:
+                db.addTeacher(dict(request.form),imagefile)
+            return redirect("/teachers")
         return 'not successful'
 
 @app.route('/teachers_details')
@@ -98,7 +104,7 @@ def teachers_details():
     print otherTeachers ,'-'*10
     stat=db.stat()
     if teacher:
-        return render_template('teachers-details.html',teacher=teacher, otherTeachers=otherTeachers,stat=stat)
+        return render_template('teachers-details.html',teacher=teacher, otherTeachers=otherTeachers,ID=ID , stats=db.stat())
     else:
         return redirect('/error404')
    
@@ -195,7 +201,8 @@ def course_list():
 @app.route('/course_grid')
 def course_grid():
     courses=db.courses()
-    print courses,"-"*100
+    for course in courses:
+        print course.get('courseActive')
     page = request.args.get('page','0')
     print page
     return render_template('course-grid.html', courses=courses)
@@ -206,7 +213,7 @@ def course_details():
     course=db.course(ID)
     if course:
         print course
-        return render_template('course-details.html', course=course)
+        return render_template('course-details.html', course=course,ID=ID)
     else:
         return redirect('/error404')
     
@@ -233,8 +240,17 @@ def blog_sidebar():
         
 @app.route('/about_us')
 def about_us():
-    return render_template('about-us.html')    
-            
+    return render_template('about-us.html')   
+    
+@app.route('/edit_stats', methods=["POST","GET"])
+def edit_Stats():
+    if request.method =="POST":
+        db.updateStat(dict(request.form))
+        return redirect(request.url)
+    else:
+        stat=db.stat()
+        print stat,'-=-=-'*100
+        return render_template('edit_stats.html', stats=stat)
 
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0',port=8080)

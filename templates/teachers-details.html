@@ -129,6 +129,7 @@
                 </div>
                 <!-- Teacher Details Info Area End -->
             </div>
+            <a href="edit_teacher?ID={{ID}}" style="margin-bottom:15px;text-decoration:none;" class="formButton button2" role="button">Edit Teacher</a>
         </div>
     </div>
 </section>
@@ -142,8 +143,8 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-book" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stat['freeCourses']}}</span></h3>
-                    <h5>Free Courses</h5>
+                    <h3><span class="counter">{{stats.get("NumberOfCourses","")[0]}}</span></h3>
+                    <h5>Courses</h5>
                 </div>
                 <!-- Single Cool Facts area End -->
             </div>
@@ -152,7 +153,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-users" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stat['studentEnrolled']}}</span>+</h3>
+                    <h3><span class="counter">{{stats.get("NumberOfStudentsEnrolled","")[0]}}</span>+</h3>
                     <h5>STUDENTS ENROLLED</h5>
                 </div>
                 <!-- Single Cool Facts area End -->
@@ -162,7 +163,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stat['teachers']}}</span></h3>
+                    <h3><span class="counter">{{stats.get("NumberOfCertifiedTeachers","")[0]}}</span></h3>
                     <h5>CERTIFIED TEACHERS</h5>
                 </div>
                 <!-- Single Cool Facts area End -->
@@ -172,7 +173,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stat['complete']}}</span></h3>
+                    <h3><span class="counter">{{stats.get("NumberOfComplateGraduates","")[0]}}</span></h3>
                     <h5>Complate Graduates</h5>
                 </div>
                 <!-- Single Cool Facts area End -->

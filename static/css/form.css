@@ -1,4 +1,4 @@
-.button {
+.formButton {
     background-color: #f6ab35;
     /* Green */
     border: none;
@@ -29,20 +29,32 @@
     float: right;
 }
 
-
-
 .margins {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
 }
 
-.button {
+.formButton {
     background: #3c4a6b;
+}
+
+.formText {
+    background: #384959;
+    border-color: #3c4a6b;
 }
 
 .margin {
     margin-top: 10px;
     margin-bottom: 10px;
 
+}
+
+.courses_details_area {
+    padding: 100px 0 0px;
+}
+
+.courses_description_content {
+    color: #6f6f6f;
+    padding: 25px 0 20px;
 }
