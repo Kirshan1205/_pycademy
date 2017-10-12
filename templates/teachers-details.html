@@ -129,8 +129,9 @@
                 </div>
                 <!-- Teacher Details Info Area End -->
             </div>
-            <a href="edit_teacher?ID={{ID}}" style="margin-bottom:15px;text-decoration:none;" class="formButton button2" role="button">Edit Teacher</a>
+
         </div>
+        <a href="edit_teacher?ID={{ID}}" style="margin-bottom:15px;text-decoration:none;" class="formButton button2" role="button">Edit Teacher</a>
     </div>
 </section>
 <!-- ===================== All Our Teacher Area End ==================== -->
@@ -203,7 +204,7 @@
                 <div class="single_teacher_profile">
                     <a href="/teachers_details?ID={{t.get('tid', '')}}">
                         <div class="teacher_thumb">
-                            <img src="static/img/teacher-img/{{t.get('image', '')}}.jpg" alt="">
+                            <img src="{{t.get('image', '')}}" alt="">
                         </div>
                     </a>
                     <div class="single_teacher_details_info">
@@ -211,7 +212,8 @@
                         <p>{{t.get('position', '').title()}}</p>
                         <div class="teacher_social_info">
                             <div class="social_icon">
-                                {% if t.get('fb', ''): %} <a href="{{t.get('fb', '')}}"><i class="fa fa-facebook"></i></a> {% endif %} {% if t['twitter']: %} <a href="{{t['twitter']}}"><i class="fa fa-twitter"></i></a> {% endif %} {% if t['skype']: %} <a href="{{t['skype']}}#"><i class="fa fa-skype"></i></a>                                {% endif %} {% if t['dribbble']: %} <a href="{{t['dribbble']}}"><i class="fa fa-dribbble"></i></a> {% endif %}
+                                {% if t.get('fb', ''): %} <a href="{{t.get('fb', '')}}"><i class="fa fa-facebook"></i></a> {% endif %} {% if t['twitter']: %} <a href="{{t['twitter']}}"><i class="fa fa-twitter"></i></a> {% endif %} {% if t['skype']: %}
+                                <a href="{{t['skype']}}#"><i class="fa fa-skype"></i></a> {% endif %} {% if t['dribbble']: %} <a href="{{t['dribbble']}}"><i class="fa fa-dribbble"></i></a> {% endif %}
                             </div>
                         </div>
                     </div>

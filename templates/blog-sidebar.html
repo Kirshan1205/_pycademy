@@ -51,7 +51,8 @@
                                     <!-- Single Blog Post Title -->
                                     <div class="news_title">
                                         <a href="#">
-                                            <h4>{{post['author']}}</h4>
+                                            <p>{{blogInfo["bid"]}}</p>
+                                            <h4>{{post.get('author', '')[0]}}</h4>
                                         </a>
                                     </div>
                                     <!-- Single Blog Post excerpt -->

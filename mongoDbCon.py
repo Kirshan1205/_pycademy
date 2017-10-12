@@ -2,6 +2,14 @@ from pymongo import MongoClient
 con = MongoClient("mongodb://maysam:0183552313@ds149479.mlab.com:49479/pycademy")
 db = con.pycademy
 
+
+print db.teachers.find_one({'tid':'t45'}) or {}
+
+
+
+
+
+
 # collectionNames = db.collection_names()
 # for colName in collectionNames[1:]:
 #     c=db[colName].find()
@@ -33,11 +41,11 @@ db = con.pycademy
 # }
 
 #db.courses.drop()
-db.teachers.drop()
+# db.teachers.drop()
 # print list(db.teachers.find())
 # db.courses.drop()
-print 'this is it',db.sttttt.count()
-print 'this is it',list(db.courses.find({},{"cid":1, "_id":0}))[:20]
+# print 'this is it',db.sttttt.count()
+# print 'this is it',list(db.courses.find({},{"cid":1, "_id":0}))[:20]
 
 # db.courses.delete_one({"title":"asrf"})
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <form action="test2" method="POST" enctype="multipart/form-data">
+        Select files: <input type="file" id="myFile" name="img" multiple>
+        <input style="margin-bottom:15px;" class="formButton button2" type="submit" role="button">
+    </form>
+
+    <p>Click the "Try it" button to find out if the file upload button accept multiple values (files).</p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="demo"></p>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myFile").multiple;
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>
+
+</body>
+
+</html>
