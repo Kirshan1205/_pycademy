@@ -1,81 +1,83 @@
-{% extends "layout.html" %}
-
-    {% block mainContent %}
-    <!-- Breadcumb area start -->
-    <section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="breadcumb_section">
-                        <!-- Breadcumb page title start -->
-                        <div class="page_title">
-                            <h3>Register</h3>
-                        </div>
-                        <!-- Breadcumb page pagination start -->
-                        <div class="page_pagination">
-                            <ul>
-                                <li><a href="index">Home</a></li>
-                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                                <li>Register</li>
-                            </ul>
-                        </div>
+{% extends "layout.html" %} {% block mainContent %}
+<!-- Breadcumb area start -->
+<section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcumb_section">
+                    <!-- Breadcumb page title start -->
+                    <div class="page_title">
+                        <h3>Register</h3>
+                    </div>
+                    <!-- Breadcumb page pagination start -->
+                    <div class="page_pagination">
+                        <ul>
+                            <li><a href="index">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li>Register</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcumb area end -->
-
-    <!-- Login area start -->
-    <div class="login_area section_padding_100">
-        <div class="container">
-            <div class="row">
-                <!-- Login thumb -->
-                <div class="col-12 col-lg-5 col-xl-6">
-                    <div class="login_thumb">
-                        <img src="static/img/bg-pattern/courses-bg.jpg" alt="">
-                        <!-- Login thumb caption -->
-                        <div class="login_thumb_caption">
-                            <h3>Register is so Easy!</h3>
-                            <p>Register &amp; start learning.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Register form area start  -->
-                <div class="col-12 col-lg-7 col-xl-6">
-                    <div class="register_form">
-                        <form action="#" method="post">
-                            <!-- Single Register input area start  -->
-                            <div class="form-group">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <input type="text" name="name" id="user_name" placeholder="Name">
-                            </div>
-                            <!-- Single Register input area start  -->
-                            <div class="form-group">
-                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                <input type="email" name="email" id="email" placeholder="Email">
-                            </div>
-                            <!-- Single Register input area start  -->
-                            <div class="form-group">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                <input type="text" name="name" id="pass_a" placeholder="Password">
-                            </div>
-                            <!-- Single Register input area start  -->
-                            <div class="form-group">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                <input type="text" name="name" id="pass_b" placeholder="Confirm Password">
-                            </div>
-                            <!-- Single Register input area start  -->
-                            <button type="submit" class="btn btn-default" id="login_submit">Sign Up</button>
-                        </form>
-                        <div class="already_have_account">
-                            <a href="login.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Already have a account? Login</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Register form area end  -->
             </div>
         </div>
     </div>
-    <!-- Login area end -->
+</section>
+<!-- Breadcumb area end -->
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close " data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> {{message}}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+<!-- Login area start -->
+<div class="login_area section_padding_100">
+    <div class="container">
+        <div class="row">
+            <!-- Login thumb -->
+            <div class="col-12 col-lg-5 col-xl-6">
+                <div class="login_thumb">
+                    <img src="static/img/bg-pattern/courses-bg.jpg" alt="">
+                    <!-- Login thumb caption -->
+                    <div class="login_thumb_caption">
+                        <h3>Register is so Easy!</h3>
+                        <p>Register &amp; start learning.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Register form area start  -->
+            <div class="col-12 col-lg-7 col-xl-6">
+                <div class="register_form">
+                    <form action="register" method="post">
+                        <!-- Single Register input area start  -->
+                        <div class="form-group">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input type="text" name="name" id="user_name" placeholder="Name">
+                        </div>
+                        <!-- Single Register input area start  -->
+                        <div class="form-group">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <input type="email" name="email" id="email" placeholder="Email">
+                        </div>
+                        <!-- Single Register input area start  -->
+                        <div class="form-group">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="text" name="name" id="pass_a" placeholder="Password">
+                        </div>
+                        <!-- Single Register input area start  -->
+                        <div class="form-group">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="text" name="name" id="pass_b" placeholder="Confirm Password">
+                        </div>
+                        <!-- Single Register input area start  -->
+                        <button type="submit" class="btn btn-default" id="login_submit">Sign Up</button>
+                    </form>
+                    <div class="already_have_account">
+                        <a href="login"><i class="fa fa-user-plus" aria-hidden="true"></i> Already have a account? Login</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Register form area end  -->
+        </div>
+    </div>
+</div>
+<!-- Login area end -->
 {% endblock %}

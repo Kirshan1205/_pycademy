@@ -15,7 +15,7 @@ def resetDB():
     db.blogs.drop()
     return 'done!'
 
-# Teachers
+# ---------------------------Teachers
 
 def teachers():
     return list(db.teachers.find())
@@ -27,29 +27,31 @@ def teacher(ID):
 def otherTeachers(ID):
     return list(db.teachers.find({"tid":{"$ne": ID}}).limit(4))
 
-def addTeacher(info,imgfile):
-    tid='t{}'.format(db.teachers.count()+1)
+def addTeacher(info):
+    tid=str(uuid.uuid4())[:15]
     imagefilename= os.path.join('static/img/teacher-img/{}.png'.format(tid))
     info['tid']=tid
     info['image']=imagefilename
-    imgfile.save(imagefilename)
-    print info
+    info['file'].save(imagefilename)
+    del(info['file'])
     db.teachers.insert(info)
     return True
 
-def updateTeacher(info,imgfile,ID):
-    tid = ID
-    imagefilename= os.path.join('static/img/teacher-img/{}.png'.format(tid))
-    info['image']=imagefilename
-    imgfile.save(imagefilename)
-    print info
+def updateTeacher(info):
+    tid = info['ID']
+    if info.get('file',False):
+        imagefilename= os.path.join('static/img/teacher-img/{}.png'.format(tid))
+        info['image']=imagefilename
+        info['file'].save(imagefilename)
+        del(info['file'])
     db.teachers.update({"tid":tid}, {"$set":info})
     return True
 
-# Courses
+#  ---------------------------Courses
 
 def courses():
     return list(db.courses.find())
+    
 
 def course(ID):
     c=db.courses.find_one({'cid':ID}) or {}
@@ -58,7 +60,7 @@ def course(ID):
     return c
     
 def creatCourse(info,coursefile,imgfile):
-    cid="c{}".format(db.courses.count()+1)
+    cid=str(uuid.uuid4())[:15]
 
     coursefilename = os.path.join('static/files/course-plans/{}.pdf'.format(cid))
     imagefilename= os.path.join('static/img/course-img/{}.png'.format(cid))
@@ -83,12 +85,12 @@ def editCourse(info,coursefile,imgfile,ID):
     db.courses.update({"cid":cid}, {"$set":info})
     return True
 
-# Images/Gallery
+#  ---------------------------Images/Gallery
 
 def images():
     return list(db.images.find())
 
-# Blogs
+#  ---------------------------Blogs
 
 def tagsCloud():
     return ["event","workshop","e-commerce"]
@@ -104,6 +106,7 @@ def blogInfo():
 
 def blog(ID):
     return db.blogs.find_one({'bid':ID}) or {}
+    
 
 def blogSidebarInfo():
     posts = []
@@ -124,7 +127,7 @@ def addBlog(info,imgfile):
     db.blogs.insert(info)
     return True
     
-# Stat
+#  ---------------------------Stat
 
 def updateStat(stat):
     # stat={"data":"general",
@@ -143,3 +146,56 @@ def stat():
         return db.stats.find({"data":"general"}).next()
     except:
         return {}
+
+#  --------------------------- users 
+#-----registration
+
+def addUser(userInfo):
+    # add the user to db
+    pass
+
+def isUser(name):
+    # check if active user by that name does exist
+    pass
+
+def activateUser(activationCode):
+    #search the db for that activation code
+    #if exist update that user to active and return acitvation was successfull
+    #if not return the code is not valid
+    pass
+    
+#----------login
+
+def validateUser(user,password):
+    # check if the username and password matches
+    # return success
+    # else return not valid
+    pass
+
+#-----forget password
+def validateEmail(emailAddress):
+    #if the email address did exist in the DB return True
+    #else return False
+    pass
+
+def tagTheUserForForgetPassword(emailAddress,uuidCode):
+    #update the user info who has the emailAdress with uuidCode
+    pass
+
+def updateUserPassword(uuidCode,newPassword):
+    # update the password of the user who has that uuid
+    pass
+
+#----change password
+def changePassword(user,newPassword):
+    #set the new password for the given user
+    pass
+
+#---update profile
+def updateProfile(info):
+    #update the info
+    pass
+    
+def getProfile(username):
+    #get the info of the user
+    pass

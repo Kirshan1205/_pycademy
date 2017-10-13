@@ -41,12 +41,12 @@
                     <!--<p>{{teacher}}</p>-->
                     <!-- Teacher Name Designation Start -->
                     <div class="name_designation">
-                        <h3>{{teacher.get('TeacherName', '')[0].title()}}</h3>
-                        <h5>{{teacher.get('TeacherPosition', '')[0].title()}}</h5>
+                        <h3>{{teacher.get('TeacherName', '').title()}}</h3>
+                        <h5>{{teacher.get('TeacherPosition', '').title()}}</h5>
                     </div>
                     <!-- About Teacher Start -->
                     <div class="about_teacher">
-                        {{teacher.get('TeacherDetails', '')[0].title()}}
+                        {{teacher.get('TeacherDetails', '').title()}}
                     </div>
                     <!-- Teacher Contact Info Start -->
                     <div class="teacher_contact_info">
@@ -108,20 +108,19 @@
                         <!-- Single Contact Info Start -->
                         <div class="tea_single_contact_info">
                             <div class="contact_icon social">
-
-                                {% if teacher.get('fb', ''): %} <a href="{{teacher.get('fb', '')}}" target="blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>{% endif %}
+                                {% if teacher.get('fb', ''): %} <a href="{{ teacher.get('fb', '') }}" target="blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>{% endif %}
                             </div>
                             <div class="contact_icon social">
-                                {% if teacher.get('twitter', ''): %} <a href="{{teacher.get('twitter', '')}}" target="blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>{% endif %}
+                                {% if teacher.get('twitter', ''): %} <a href="{{ teacher.get('twitter', '') }}" target="blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>{% endif %}
                             </div>
                             <div class="contact_icon social">
-                                {% if teacher.get('googleplus', ''): %} <a href="{{teacher.get('googleplus', '')}}" target="blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>{% endif %}
+                                {% if teacher.get('googleplus', ''): %} <a href="{{ teacher.get('googleplus', '') }}" target="blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>{% endif %}
                             </div>
                             <div class="contact_icon social">
-                                {% if teacher.get('pinterest', ''): %} <a href="{{teacher.get('pinterest', '')}}" target="blank"><i class="fa fa-pinterest" aria-hidden="true"></i></a>{% endif %}
+                                {% if teacher.get('pinterest', ''): %} <a href="{{ teacher.get('pinterest', '') }}" target="blank"><i class="fa fa-pinterest" aria-hidden="true"></i></a>{% endif %}
                             </div>
                             <div class="contact_icon social">
-                                {% if teacher.get('youtube', ''): %} <a href="{{teacher.get('youtube', '')}}" target="blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>{% endif %}
+                                {% if teacher.get('youtube', ''): %} <a href="{{ teacher.get('youtube', '') }}" target="blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>{% endif %}
                             </div>
                         </div>
                     </div>
@@ -144,7 +143,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-book" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stats.get("NumberOfCourses","")[0]}}</span></h3>
+                    <h3><span class="counter">{{stats.get("NumberOfCourses","")}}</span></h3>
                     <h5>Courses</h5>
                 </div>
                 <!-- Single Cool Facts area End -->
@@ -154,7 +153,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-users" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stats.get("NumberOfStudentsEnrolled","")[0]}}</span>+</h3>
+                    <h3><span class="counter">{{stats.get("NumberOfStudentsEnrolled","")}}</span>+</h3>
                     <h5>STUDENTS ENROLLED</h5>
                 </div>
                 <!-- Single Cool Facts area End -->
@@ -164,7 +163,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stats.get("NumberOfCertifiedTeachers","")[0]}}</span></h3>
+                    <h3><span class="counter">{{stats.get("NumberOfCertifiedTeachers","")}}</span></h3>
                     <h5>CERTIFIED TEACHERS</h5>
                 </div>
                 <!-- Single Cool Facts area End -->
@@ -174,7 +173,7 @@
                 <!-- Single Cool Facts area Start -->
                 <div class="cool_fact_text">
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    <h3><span class="counter">{{stats.get("NumberOfComplateGraduates","")[0]}}</span></h3>
+                    <h3><span class="counter">{{stats.get("NumberOfComplateGraduates","")}}</span></h3>
                     <h5>Complate Graduates</h5>
                 </div>
                 <!-- Single Cool Facts area End -->

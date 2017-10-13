@@ -1,12 +1,36 @@
 from flask import Flask, render_template, redirect,request, url_for, flash
 from database import db
 from werkzeug.utils import secure_filename
-import os, json
-# from pymongo import MongoClient
-# con = MongoClient("mongodb://maysam:0183552313@ds149479.mlab.com:49479/pycademy")
-# database = con.pycademy
+import os, json, uuid, ast
+from wtforms import Form, BooleanField, TextField, PasswordField, validators
+from passlib.hash import sha256_crypt
+from flask_mail import Message
+from flask_mail import Mail
+import uuid
 
-app=Flask(__name__)
+myEmail="kidocodeictschool@gmail.com"
+
+app = Flask(__name__)
+app.secret_key = 'YOLO'
+
+app.config.update(
+    DEBUG = True,
+    MAIL_SERVER = "smtp.gmail.com",
+    MAIL_PORT = 465,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = myEmail,
+    MAIL_PASSWORD = "weareprogrammerz" #not secure!!!!
+)
+mail = Mail(app)
+
+def send_mail(sender, email, message):
+    msg = Message(
+        'DONOTREPLY',
+        sender = sender,
+        recipients=[email]
+        )
+    msg.body = message
+    mail.send(msg)
 
 #-----------------Index-----------------
 
@@ -77,32 +101,24 @@ def course_details():
 
 @app.route('/create_course', methods=["POST","GET"])
 def create_course(cid=None):
-    print request.url.split('/')[-1][:11]
     if request.method == "GET":
-        if request.url.split('/')[-1][:11]=='edit_course':
-            ID = request.args.get('ID','null')
-            course=db.course(ID)
-            return render_template('createcourse.html',course=course,action="edit_course?ID={}".format(ID))
         return render_template('createcourse.html',course={},action="create_course")
     else:
         if ('image' not in request.files) or ('course_plan' not in request.files):
-            #flash('No file part')
+            flash('No file part')
             return redirect(request.url)
         imagefile = request.files['image']
         coursefile = request.files['course_plan']
         if imagefile.filename == '' or coursefile.filename == '':
-            #flash('No selected file')
+            flash('No selected file')
             return redirect(request.url)
 
         if (imagefile and allowed_file(imagefile.filename,['png']))and(coursefile and allowed_file(coursefile.filename,['pdf'])):
-            if request.url.split('/')[-1][:11]=='edit_course':
-                ID = request.args.get('ID','null')
-                if ID:
-                    db.editCourse(dict(request.form),coursefile,imagefile,ID)
-            else:
-                db.creatCourse(dict(request.form),coursefile,imagefile)
-            return redirect("/course_grid")
-        return 'not successful'
+            db.creatCourse(dict(request.form),coursefile,imagefile)
+            flash('Course Added Successfully, Add New Course!!')
+            return redirect(request.url)
+        flash('File Format Is Not Acceptable, Try Using PNG!')
+        return redirect(request.url)
 
 @app.route('/edit_course', methods=["POST","GET"])
 def edit_course(cid=None):
@@ -142,68 +158,58 @@ def teachers():
 @app.route('/add_teacher', methods=["POST","GET"])
 def add_teacher(tid=None):
     if request.method == "GET":
-        ID = request.args.get('ID','')
-        if ID:
-            teacher=db.teacher(ID)
-        else:
-            teacher={}
-        if request.url.split('/')[-1][:12]=='edit_teacher':
-            ID = request.args.get('ID','')
-            teacher=db.teacher(ID)
-            return render_template('add_teacher.html',teacher=teacher,action="edit_teacher?ID={}".format(ID))
         return render_template('add_teacher.html',teacher={},action="add_teacher")
     else:
         if ('TeachersImage' not in request.files):
-            #flash('No file part')
+            flash('No file part')
             return redirect(request.url)
         imagefile = request.files['TeachersImage']
         if imagefile.filename == '':
-            #flash('No selected file')
+            flash('No selected file')
             return redirect(request.url)
         
+        info=ast.literal_eval(json.dumps(request.form.to_dict()))
+        info["file"]=imagefile
+        
         if imagefile and allowed_file(imagefile.filename,['png']):
-            if request.url.split('/')[-1][:12]=='edit_teacher':
-                ID = request.args.get('ID','null')
-                if ID:
-                    print "hello"
-                    db.updateTeacher(dict(request.form),imagefile,ID)
-            else:
-                db.addTeacher(dict(request.form),imagefile)
-            return redirect("/teachers")
-        return 'not successful'
+            db.addTeacher(info)
+            flash('Teacher added successfully, add new teacher')
+            return redirect(request.url)
+        flash('file format is not acceptable, try PNG!')
+        return redirect(request.url)
 
 @app.route('/edit_teacher', methods=["POST","GET"])
 def edit_teacher(tid=None):
     if request.method == "GET":
         ID = request.args.get('ID','')
-        if ID:
-            teacher=db.teacher(ID)
-        else:
-            teacher={}
-        if request.url.split('/')[-1][:12]=='edit_teacher':
-            ID = request.args.get('ID','')
-            teacher=db.teacher(ID)
+        teacher=db.teacher(ID)
+        if teacher:
             return render_template('add_teacher.html',teacher=teacher,action="edit_teacher?ID={}".format(ID))
-        return render_template('add_teacher.html',teacher={},action="add_teacher")
+        else:
+            return redirect('error404')
+        
     else:
         if ('TeachersImage' not in request.files):
-            #flash('No file part')
+            flash('No file part')
             return redirect(request.url)
+            
         imagefile = request.files['TeachersImage']
-        if imagefile.filename == '':
-            #flash('No selected file')
-            return redirect(request.url)
+        # if imagefile.filename == '':
+        #     flash('No selected file')
+        #     return redirect(request.url)
+
+        ID = request.args.get('ID','null')
+        teacherInfo=ast.literal_eval(json.dumps(request.form.to_dict()))
+        teacherInfo['ID']=ID
+       
+        if imagefile:
+            if not(allowed_file(imagefile.filename,['png'])):
+                flash('try PNG')
+                return redirect(request.url)
+            teacherInfo['file']=imagefile
         
-        if imagefile and allowed_file(imagefile.filename,['png']):
-            if request.url.split('/')[-1][:12]=='edit_teacher':
-                ID = request.args.get('ID','null')
-                if ID:
-                    print "hello"
-                    db.updateTeacher(dict(request.form),imagefile,ID)
-            else:
-                db.addTeacher(dict(request.form),imagefile)
-            return redirect("/teachers")
-        return 'not successful'
+        db.updateTeacher(teacherInfo)
+        return redirect("/teachers_details?ID={}".format(ID))
 
 @app.route('/teachers_details')
 def teachers_details():
@@ -230,7 +236,7 @@ def blog_sidebar():
     tagsCloud = db.tagsCloud()
     recentPosts = db.recentPost()
     postData = db.blogSidebarInfo()
-    return render_template('blog-sidebar.html',blogInfo=db.blogInfo(),postData=postData, postInfo=postInfo, categoryTags=categoryTags, tagsCloud=tagsCloud, recentPosts=recentPosts)
+    return render_template('blog-sidebar.html',postData=postData, postInfo=postInfo, categoryTags=categoryTags, tagsCloud=tagsCloud, recentPosts=recentPosts)
 
 @app.route('/single')
 def single():
@@ -313,9 +319,61 @@ def gallery_2_column():
 
 #-----------------Register And Login-----------------
 
-@app.route('/register')
-def register():
-    return render_template('register.html')
+class RegistrationForm(Form):
+    username = TextField("Username", [validators.Length(min=4, max=20)])
+    email = TextField("Email Address", [validators.Length(min=6, max=50)])
+    password = PasswordField("Password", [validators.Required(),validators.EqualTo('confirm', message="Passwords Must Match")])
+    confirm = PasswordField("Repeat Password")
+    accept_tos = BooleanField("I Accept The <a href='/tos'>Terms of Service</a> And The <a href='/privacy/'>Privacy Notice</a> (Last Updated Jan 15 2015)", [validators.Required()])
+
+@app.route('/register', methods=['GET','POST'])
+def register_page():
+    try:
+        form = RegistrationForm(request.form)
+        if request.method == "POST" and form.validate():
+            realUUID = str(uuid.uuid4())[:20]
+            username = form.username.data
+            email = form.email.data
+            password = sha256_crypt.encrypt((str(form.password.data)))
+            activate = realUUID
+            # c,conn = connection()
+            # x = c.execute("SELECT * FROM users WHERE (username = (%s) OR email = (%s))",(thwart(username), thwart(email)))
+            # y = c.fetchall()
+
+            # if int(x) > 0:
+            if True: # there is already a person with that name
+                flash("That username or email is already taken, please choose another")
+                return render_template('register.html', form=form)
+            else:
+                # add the user to db
+                pass
+                # c.execute("DELETE FROM users WHERE username=(%s)",(thwart(username)))
+                # c.execute("DELETE FROM users WHERE email=(%s)",(thwart(email)))
+                # c.execute("INSERT INTO users (username, password, email, activate, tracking) VALUES (%s, %s, %s, %s, %s)",
+                # (thwart(username), thwart(password), thwart(email), thwart(activate), thwart("/introduction-to-python-programming/")))
+                
+                # conn.commit()
+                # flash("Thanks for registering please check your email!!!")
+                # c.close()
+                # conn.close()
+                # gc.collect()
+                
+                # session["username"] = username
+                # session["email"] = email
+                # session["activate"] = activate
+                
+                send_mail(myEmail,email,"Please Go To This Link To Verify Your Account:"+"\n"+"flaskblueprint-arshamalishirkouhi.c9users.io/verified/"+ realUUID) # has to be fixed
+                return redirect('/') #"Please Check Your Email"
+        return render_template("register.html", form=form)
+    except Exception as e:
+        return(str(e))
+
+@app.route('/activate')
+def activate():
+    # get the activationCode
+    # send the activation code to db to activate
+    # flash back proper message coming from db
+    pass
 
 @app.route('/login')
 def login():
@@ -355,6 +413,13 @@ def test():
 def test2():
     return str(list(request.files['img']))
     
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+    
+@app.route('/forget_password')
+def forget_password():
+    return render_template('forget_password.html')
 
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0',port=8080)

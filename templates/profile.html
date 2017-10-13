@@ -1,0 +1,55 @@
+{% extends "layout.html" %} {% block mainContent %}
+<!-- ===================== Breadcumb area start ===================== -->
+<section class="breadcumb_area" style="background-image: url(img/bg-pattern/breadcumb.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcumb_section">
+                    <!-- Breadcumb page title start -->
+                    <div class="page_title">
+                        <h3>profile</h3>
+                    </div>
+                    <!-- Breadcumb page pagination start -->
+                    <div class="page_pagination">
+                        <ul>
+                            <li><a href="index">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li>profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===================== Breadcumb area end ===================== -->
+<!-- ================= All Our User Area Start =============== -->
+<section class="all_our_teacher_area section_padding_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <!-- User Full Image Start -->
+                <div class="teacher_full_image">
+                    <img src="static/img/course-img/c2.png" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <!-- User Details Info Area Start -->
+                <div class="teacher_details_info">
+                    <!--<p>{{teacher}}</p>-->
+                    <!-- Teacher Name Designation Start -->
+                    <div class="name_designation">
+                        <h3>Username</h3>
+                    </div>
+                    <!-- About Teacher Start -->
+                    <div class="about_teacher">
+                        Details
+                    </div>
+                </div>
+                <!-- User Details Info Area End -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================= All Our User Area End =============== -->
+{% endblock %}

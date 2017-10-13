@@ -13,7 +13,7 @@
                     <!-- Breadcumb page pagination start -->
                     <div class="page_pagination">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
                             <li>Teacher Details</li>
                         </ul>
@@ -24,6 +24,14 @@
     </div>
 </section>
 <!-- ===================== Breadcumb area end ===================== -->
+
+ <!--======== flash message starts==========-->
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close " data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> {{message}}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+ <!--======== flash message ends==========-->
 
 <!-- ================= All Our Teacher Area Start =============== -->
 <form action="{{action}}" method="POST" enctype="multipart/form-data">
@@ -48,12 +56,12 @@
                     <div class="teacher_details_info">
                         <!-- Teacher Name Designation Start -->
                         <div class="name_designation">
-                            <input type="text" name="TeacherName" placeholder="Add Teacher Name" value="{{teacher.get('TeacherName', '')[0]}}" />
-                            <input type="text" name="TeacherPosition" placeholder="Add Teacher Position" value="{{teacher.get('TeacherPosition', '')[0]}}" />
+                            <input type="text" name="TeacherName" placeholder="Add Teacher Name" value="{{teacher.get('TeacherName', '')}}" />
+                            <input type="text" name="TeacherPosition" placeholder="Add Teacher Position" value="{{teacher.get('TeacherPosition', '')}}" />
                         </div>
                         <!-- About Teacher Start -->
                         <div class="about_teacher">
-                            <input type="text" name="TeacherDetails" placeholder="Add Teacher Details" value="{{teacher.get('TeacherDetails', '')[0]}}" />
+                            <input type="text" name="TeacherDetails" placeholder="Add Teacher Details" value="{{teacher.get('TeacherDetails', '')}}" />
                         </div>
                         <!-- Teacher Contact Info Start -->
                         <div class="teacher_contact_info">
@@ -120,19 +128,19 @@
                             <div class="tea_single_contact_info">
                                 <div class="contact_icon social">
 
-                                    <input type="text" name="fb" value="{{teacher.get('fb', '')[0]}}" placeholder="Teachers' Facebook Link" />
+                                    <input type="text" name="fb" value="{{teacher.get('fb', '')}}" placeholder="Teachers' Facebook Link" />
                                 </div>
                                 <div class="contact_icon social">
-                                    <input type="text" name="twitter" value="{{teacher.get('twitter', '')[0]}}" placeholder="Teachers' Twitter Link" />
+                                    <input type="text" name="twitter" value="{{teacher.get('twitter', '')}}" placeholder="Teachers' Twitter Link" />
                                 </div>
                                 <div class="contact_icon social">
-                                    <input type="text" name="googleplus" value="{{teacher.get('googleplus', '')[0]}}" placeholder="Teachers' GooglePlus Link" />
+                                    <input type="text" name="googleplus" value="{{teacher.get('googleplus', '')}}" placeholder="Teachers' GooglePlus Link" />
                                 </div>
                                 <div class="contact_icon social">
-                                    <input type="text" name="pinterest" value="{{teacher.get('pinterest', '')[0]}}" placeholder="Teachers' Pinterest Link" />
+                                    <input type="text" name="pinterest" value="{{teacher.get('pinterest', '')}}" placeholder="Teachers' Pinterest Link" />
                                 </div>
                                 <div class="contact_icon social">
-                                    <input type="text" name="youtube" value="{{teacher.get('youtube', '')[0]}}" placeholder="Teachers' Youtube Link" />
+                                    <input type="text" name="youtube" value="{{teacher.get('youtube', '')}}" placeholder="Teachers' Youtube Link" />
                                 </div>
                             </div>
 

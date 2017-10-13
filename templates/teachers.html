@@ -45,15 +45,15 @@
                         </a>
                         <!-- Single Teacher Details Info -->
                         <div class="single_teacher_details_info">
-                            <h5>{{teacher.get('TeacherName', '')[0].title()}}</h5>
-                            <p>{{teacher.get('TeacherPosition', '')[0].title()}}</p>
+                            <h5>{{teacher.get('TeacherName', '').title()}}</h5>
+                            <p>{{teacher.get('TeacherPosition', '').title()}}</p>
                             <!-- Single Teacher Socila Links -->
                             <div class="teacher_social_info">
                                 <div class="social_icon">
-                                    {% if teacher.get('fb', ''): %} <a href="{{teacher.get('fb', '')}}"><i class="fa fa-facebook"></i></a>   {% endif %}
-                                    {% if teacher.get('twitter', ''): %} <a href="{{teacher.get('twitter', '')}}"><i class="fa fa-twitter"></i></a>  {% endif %}
-                                    {% if teacher.get('skype', ''): %} <a href="{{teacher.get('skype', '')}}"><i class="fa fa-skype"></i></a> {% endif %}
-                                    {% if teacher.get('dribble', ''): %} <a href="{{teacher.get('dribbble', '')}}"><i class="fa fa-dribbble"></i></a> {% endif %}
+                                    {% if teacher.get('fb', ''): %} <a href="{{ teacher.get('fb', '') }}"><i class="fa fa-facebook"></i></a>   {% endif %}
+                                    {% if teacher.get('twitter', ''): %} <a href="{{ teacher.get('twitter', '') }}"><i class="fa fa-twitter"></i></a>  {% endif %}
+                                    {% if teacher.get('skype', ''): %} <a href="{{ teacher.get('skype', '') }}"><i class="fa fa-skype"></i></a> {% endif %}
+                                    {% if teacher.get('dribble', ''): %} <a href="{{ teacher.get('dribbble', '') }}"><i class="fa fa-dribbble"></i></a> {% endif %}
                                 </div>
                             </div>
                         </div>
